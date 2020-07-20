@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:CheckstoresMagnusRetail.ViewModels" xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+          x:Class="CheckstoresMagnusRetail.Views.ViewCells.TramoViewCell">
+    <ViewCell.View>
+        <Frame  CornerRadius="5" BackgroundColor="{StaticResource Key=blanco}" BorderColor="{StaticResource Key=Gris}">
+            <StackLayout>
+            <Label  x:Name="TramoName" FontSize="Small" FontAttributes="Bold"/>
+            <Label x:Name="Descripcion" FontSize="Micro" Text="Captura de informacion de tramos en mueble"/>
+                <sync:SfListView
+                    x:Name="ListProducto"
+                    VerticalOptions="Start"
+                    AutoFitMode="DynamicHeight"
+                                   ItemTapped="productoseleccionado"
+                    SelectionMode="None"
+                  
+                    >
+                   <sync:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="&#9711;" />
+                                <Label Text="{Binding CategoriaNombre}" />
+                                    <Label Text="&#x27A4;" HorizontalOptions="EndAndExpand" />
+                                  </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </sync:SfListView.ItemTemplate>
+
+                </sync:SfListView>
+
+                </StackLayout>
+        </Frame>
+    </ViewCell.View>
+</ViewCell>

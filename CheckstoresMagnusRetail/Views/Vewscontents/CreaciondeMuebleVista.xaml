@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:viewcells="clr-namespace:CheckstoresMagnusRetail.Views.ViewCells"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+             xmlns:viewmodels="clr-namespace:CheckstoresMagnusRetail.ViewModels"
+             xmlns:conv="clr-namespace:CheckstoresMagnusRetail.Methods"
+             x:Class="CheckstoresMagnusRetail.Views.Vewscontents.CreaciondeMuebleVista"
+             x:Name="vistamueblecrear"
+             >
+        <ContentView.Resources>
+        <ResourceDictionary>
+            <conv:DecimalConverter x:Key="conv" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+          <ScrollView>
+              <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <Grid  Margin="10,2,10,2" >
+
+               <Grid.RowDefinitions>
+                   <RowDefinition Height="60" />
+                   <RowDefinition Height="200" />
+                   <RowDefinition Height="60" />
+                   <RowDefinition Height="60" />
+                   <RowDefinition Height="60" />
+                   <RowDefinition Height="330" />
+                                      <RowDefinition Height="60" />
+                                      <RowDefinition Height="80" />
+
+
+               </Grid.RowDefinitions>
+               <Grid.ColumnDefinitions>
+                   <ColumnDefinition Width=".5*" />
+                   <ColumnDefinition Width=".5*" />
+               </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".33*"/>
+                                        <ColumnDefinition Width=".33*"/>
+                                        <ColumnDefinition Width=".33*"/>
+                </Grid.ColumnDefinitions>
+                                     <inputLayout:SfTextInputLayout Hint="Cara"  Grid.Column="0"
+                                         HeightRequest="50" InputTransparent="{Binding modoforma}"
+                                                   EnableFloating="True"
+                                                   ContainerBackgroundColor="White" ContainerType="Filled"
+                                                                 
+                                                   FocusedColor="{StaticResource Key=azul}"
+                                                   >
+                            <combobox:SfComboBox x:Name="caramueble" DisplayMemberPath="."
+                                    TextColor="{StaticResource Key=azul}"
+                                                 
+                                                 SelectedItem="{Binding MuebleData.MuebleCara}"
+                                    DataSource="{Binding CarasMueble}">
+                                
+                                   <combobox:SfComboBox.ItemTemplate>
+                                       <DataTemplate>
+                                       <Label Text="{Binding .}" />
+                                           </DataTemplate>
+                                       </combobox:SfComboBox.ItemTemplate>
+
+                           </combobox:SfComboBox>
+                        </inputLayout:SfTextInputLayout>
+
+
+         <ui:MaterialTextField  HeightRequest="50"  Placeholder="Pasillo" InputType="Numeric"  BackgroundColor="White" InputTransparent="{Binding modoforma}"
+                            Text="{Binding MuebleData.MueblePasillo}" Grid.Column="1"
+                               TintColor="{StaticResource Key=azul}"
+                               />
+            <ui:MaterialTextField HeightRequest="50" Placeholder="Tramo Inicial" InputType="Numeric"  BackgroundColor="White" InputTransparent="{Binding modoforma}"
+                      Text="{Binding MuebleData.MuebleTramoInicial}"  TextChangeCommand="{Binding CambioentramoInicial}"
+                                  TintColor="{StaticResource Key=azul}" Grid.Column="2"/>
+</Grid>
+          <ui:MaterialCard Grid.Row="1" Grid.ColumnSpan="2">
+              <StackLayout>
+                  <Label Text="Categorias" FontSize="Medium" />
+                <viewmodels:InfiniteListView
+                    x:Name="ListProducto" HeightRequest="200"
+                    VerticalOptions="Start"
+                    HasUnevenRows="True"
+                    ItemsSource="{Binding Categorias}"
+                    RowHeight="20"
+                    SelectionMode="None"
+                    SeparatorVisibility="None"
+                 >    <x:Arguments>
+        <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
+    </x:Arguments>
+                   <viewmodels:InfiniteListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                <CheckBox IsChecked="{Binding Activo}" IsEnabled="{Binding Editable}" Color="{StaticResource Key=azul}" />
+                                <Label Text="{Binding CategoriaNombre}" />
+                                  </StackLayout>
+                                </ViewCell>
+                        </DataTemplate>
+                    </viewmodels:InfiniteListView.ItemTemplate>
+
+                </viewmodels:InfiniteListView>
+          </StackLayout>
+          </ui:MaterialCard>
+
+                         <inputLayout:SfTextInputLayout Hint="TIPO DE MUEBLE" Grid.Row="2" Grid.Column="0"
+                                                   EnableFloating="True" InputTransparent="{Binding modoforma}"
+                                                   ContainerBackgroundColor="White" ContainerType="Filled"
+
+                                                   FocusedColor="{StaticResource Key=azul}"
+                                                   >
+                            <combobox:SfComboBox x:Name="tipomu" DisplayMemberPath="Descripcion"
+                                    TextColor="{StaticResource Key=azul}"
+                                                 SelectedItem="{Binding TipoSeleccionado}"
+                                    DataSource="{Binding TiposMuebles}">
+                                
+                                   <combobox:SfComboBox.ItemTemplate>
+                                       <DataTemplate>
+                                       <Label Text="{Binding Descripcion}" />
+                                           </DataTemplate>
+                                       </combobox:SfComboBox.ItemTemplate>
+
+                           </combobox:SfComboBox>
+                        </inputLayout:SfTextInputLayout>
+   
+         <ui:MaterialTextField Grid.Row="2" Grid.Column="1" Placeholder="ALTURA" InputType="Numeric"
+                               BackgroundColor="White" FloatingPlaceholderEnabled="True" InputTransparent="{Binding modoforma}"
+                            Text="{Binding MuebleData.MuebleAltura , Converter={StaticResource conv}}"
+                               TintColor="{StaticResource Key=azul}"
+                               />
+            <ui:MaterialTextField Grid.Row="3" Grid.Column="0"
+                                  TextChangeCommand="{Binding Cambioentramos}"
+                Placeholder="TRAMOS" FloatingPlaceholderEnabled="True" InputType="Numeric"
+                                  BackgroundColor="White" InputTransparent="{Binding modoforma}"
+                                   TintColor="{StaticResource Key=azul}"
+                                  Text="{Binding MuebleData.MuebleTramos}"
+                                  />
+                    <inputLayout:SfTextInputLayout Hint="MEDIDAS IGUALES" Grid.Row="3" Grid.Column="1" 
+                                                   EnableFloating="True" InputTransparent="{Binding modoforma}"
+                                                   ContainerBackgroundColor="White" ContainerType="Filled"
+                                                   
+                                                   FocusedColor="{StaticResource Key=azul}"
+                                                   >
+                            <combobox:SfComboBox x:Name="medidasiguales" DisplayMemberPath="DisplayName"
+                                    TextColor="{StaticResource Key=azul}"
+                                    DataSource="{Binding Opciones}"
+                                    SelectedItem="{Binding MedidaIgualSeleccionada}"
+                                            ValueChanged="medidacamnbio"     >
+                                   <combobox:SfComboBox.ItemTemplate>
+                                       <DataTemplate>
+                                       <Label Text="{Binding DisplayName}" />
+                                           </DataTemplate>
+                                       </combobox:SfComboBox.ItemTemplate>
+
+                           </combobox:SfComboBox>
+                        </inputLayout:SfTextInputLayout>
+                                <ui:MaterialTextField Grid.Row="4" Grid.Column="0" 
+                Placeholder="NIVEL MINIMO" FloatingPlaceholderEnabled="True"
+                                                     InputTransparent="{Binding modoforma}" 
+                                                      Text="{Binding MuebleData.MuebleNivelMinimo}"
+                              TextChangeCommand="{Binding Cambioennivelesminimo}" InputType="Numeric" BackgroundColor="White"
+                                   TintColor="{StaticResource Key=azul}" />
+
+                     <ui:MaterialTextField Grid.Row="4" Grid.Column="1"  Text="{Binding MuebleData.MuebleNivelMaximo}" InputTransparent="{Binding modoforma}"
+                Placeholder="NIVEL MAXIMO " FloatingPlaceholderEnabled="True" InputType="Numeric"  BackgroundColor="White"
+                         TextChangeCommand="{Binding Cambioennivelesmaximo}"           TintColor="{StaticResource Key=azul}" />
+                   <syncfusion:SfListView Grid.Row="5"
+                                          Grid.ColumnSpan="2"
+                                          ItemsSource="{Binding Tramos}"
+                                          x:Name="listView"
+                                          
+                                          ItemSize="250"
+                                          ItemSpacing="5"
+                                          SelectionMode="None"
+                                          Orientation="Horizontal">
+                       <syncfusion:SfListView.ItemTemplate>
+                           <DataTemplate>
+                               <viewcells:TramoNivelesMuebleViewCell TramoFormaMueblesModel="{Binding .}" />
+                           </DataTemplate>
+                           </syncfusion:SfListView.ItemTemplate>
+                       </syncfusion:SfListView>
+
+            <ui:MaterialTextField Grid.Row="6" Grid.ColumnSpan="2" InputTransparent="{Binding modoforma}" Placeholder="Comentario"  Text="{Binding MuebleData.MuebleComentario}"  BackgroundColor="White"
+                                     TintColor="{StaticResource Key=azul}" />
+                    <ui:MaterialCard  Grid.Row="7" Grid.ColumnSpan="2"  CornerRadius="20"  Clicked="openphotoviewer" IsClickable="True">
+                   <StackLayout Orientation="Horizontal" HeightRequest="30">
+                   <Label  Text="FOTOS DE MUEBLE" TextColor="Black"
+                           VerticalOptions="CenterAndExpand" ClassId="CrearNuevoMueble"  FontAttributes="Bold" FontSize="Large"/>
+                                          <Image  Source="photo.png" HeightRequest="30" HorizontalOptions="End" />
+
+                       </StackLayout>
+               </ui:MaterialCard>
+        </Grid></StackLayout>
+            </ScrollView>  
+    </ContentView.Content>
+</ContentView>

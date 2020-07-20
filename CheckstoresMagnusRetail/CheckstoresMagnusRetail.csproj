@@ -1,0 +1,87 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="4.7.0.968" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+    <PackageReference Include="XF.Material" Version="1.6.5" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.6.292" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.4.0.55" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="17.4.0.55" />
+    <PackageReference Include="Syncfusion.Xamarin.SfMaskedEdit" Version="17.4.0.55" />
+    <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="17.4.0.55" />
+    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="17.4.0.55" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
+    <PackageReference Include="MagicGradients" Version="1.1.0" />
+    <PackageReference Include="BarcodeScanner.XF" Version="4.7.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="DataModels\" />
+    <Folder Include="Views\ViewCells\" />
+    <Folder Include="sqlrepo\" />
+    <Folder Include="ApiRepo\" />
+    <Folder Include="Views\Vewscontents\" />
+    <Folder Include="Methods\" />
+    <Folder Include="Helper\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Views\TabsPage.cs" />
+    <Compile Remove="Views\MyPage.xaml.cs" />
+    <Compile Remove="Views\TiendaCard.xaml.cs" />
+    <Compile Remove="Views\HomeView.cs" />
+    <Compile Remove="ViewModels\servicioslistview.cs" />
+    <Compile Remove="Views\Styleresources.xaml.cs" />
+    <Compile Remove="Views\Tiendaviewcell.xaml.cs" />
+    <Compile Remove="Views\Servicios.xaml.cs" />
+    <Compile Remove="Views\TiendasListViewCell.xaml.cs" />
+    <Compile Remove="ViewModels\TiendaDetailModel.cs" />
+    <Compile Remove="Views\Cargando.xaml.cs" />
+    <Compile Remove="Views\ImagePhotoView.cs" />
+    <Compile Remove="Views\ViewCells\TramoListadenivelesViewCell.cs" />
+    <Compile Remove="Views\DatosMuebleFormaPage.xaml.cs" />
+    <Compile Remove="Views\Secondviewtest.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Views\MyPage.xaml" />
+    <EmbeddedResource Remove="Views\TiendaCard.xaml" />
+    <EmbeddedResource Remove="Views\Tiendaviewcell %28copy%29.xaml" />
+    <EmbeddedResource Remove="Views\Tiendaviewcell %28copy%29.xaml" />
+    <EmbeddedResource Remove="Views\Styleresources.xaml" />
+    <EmbeddedResource Remove="Views\Tiendaviewcell %28copy%29.xaml" />
+    <EmbeddedResource Remove="Views\Tiendaviewcell.xaml" />
+    <EmbeddedResource Remove="Views\Servicios.xaml" />
+    <EmbeddedResource Remove="Views\TiendasListViewCell.xaml" />
+    <EmbeddedResource Remove="Views\DatosMuebleFormaPage.xaml" />
+    <EmbeddedResource Remove="Views\Secondviewtest.xaml" />
+    <EmbeddedResource Remove="Views\Secondviewtest.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\ViewCells\TiendasViewCell.xaml.cs">
+      <DependentUpon>TiendasViewCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ViewCells\ServicioViewCell.xaml.cs">
+      <DependentUpon>ServicioViewCell.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Mono.Android">
+      <HintPath>..\..\..\..\..\Library\Frameworks\Xamarin.Android.framework\Versions\10.0.6.2\lib\xamarin.android\xbuild-frameworks\MonoAndroid\v10.0\Mono.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="loggingdata2">
+      <HintPath>loggingdata2.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Android">
+      <HintPath>..\..\..\..\..\Library\Frameworks\Xamarin.Android.framework\Versions\10.3.1.4\lib\xamarin.android\xbuild-frameworks\MonoAndroid\v10.0\Mono.Android.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

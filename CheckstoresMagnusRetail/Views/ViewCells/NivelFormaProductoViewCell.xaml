@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material" x:Class="CheckstoresMagnusRetail.Views.ViewCells.NivelFormaProductoViewCell">
+    <ViewCell.View>
+        <StackLayout Margin="0,5,0,5" Orientation="Horizontal" BackgroundColor="{StaticResource Key=blanco}" >
+            <Label x:Name="Nivel" VerticalOptions="CenterAndExpand" Text="{Binding NombreNivel}" FontSize="Small" />
+           
+         <ui:MaterialTextField 
+                               Placeholder="FRENTE" InputType="Numeric"  BackgroundColor="White" Text="{Binding Frente}"  HorizontalOptions="FillAndExpand"
+              TintColor="{StaticResource Key=azul}" TextFontSize="10"
+                              />
+                     <ui:MaterialTextField 
+                               Placeholder="PROFUNDO" InputType="Numeric"   BackgroundColor="White" Text="{Binding Profundo}" HorizontalOptions="FillAndExpand"
+                          TintColor="{StaticResource Key=azul}" TextFontSize="10"
+                              />
+                     <ui:MaterialTextField 
+                               Placeholder="POSICION" InputType="Numeric"  BackgroundColor="White" Text="{Binding  Posicion}" HorizontalOptions="FillAndExpand"
+                          TintColor="{StaticResource Key=azul}" TextFontSize="10"
+                              />
+        </StackLayout>
+
+    </ViewCell.View>
+</ViewCell>

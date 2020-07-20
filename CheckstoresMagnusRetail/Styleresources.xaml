@@ -1,0 +1,51 @@
+﻿
+
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material" xmlns:conv="clr-namespace:CheckstoresMagnusRetail.Methods" 
+                    x:Class="CheckstoresMagnusRetail.Styleresources">
+            <Color x:Key="blanco">#FFFFFF</Color>
+            <Color x:Key="azul">#336B87</Color>
+            <Color x:Key="autum" >#763626</Color>
+                <Color x:Key="Gris" >#F6F6F6</Color>
+                    <Color x:Key="mist" >#90AFC5</Color>
+                    <Color x:Key="shadow" >#2A3132</Color>
+
+                        <conv:NumeroTramoaNombreConverter x:Key="converttramo" />
+
+    <Color x:Key="disabledtext">#C0C0C0</Color>
+
+
+         <Style x:Key="Mainpage" TargetType="ContentPage">
+            <Setter Property="BackgroundColor" Value="{StaticResource Gris}" />
+             <Setter Property="NavigationPage.HasNavigationBar" Value="False" />
+        </Style>
+
+             <Style x:Key="SecondaryPage" TargetType="ContentPage">
+            <Setter Property="BackgroundColor" Value="{StaticResource Gris}" />
+             <Setter Property="NavigationPage.BarBackgroundColor"  Value="{StaticResource Key=azul}"/>
+                              <Setter Property="NavigationPage.HasNavigationBar" Value="False" />
+
+        </Style>
+         <Style x:Key="inputtext" TargetType="material:MaterialTextField">
+            <Setter Property="BackgroundColor" Value="{StaticResource blanco}" />
+            <Setter Property="TextColor" Value="{StaticResource disabledtext}" />
+             <Setter Property="AlwaysShowUnderline" Value="False"/>
+             <Setter Property="FloatingPlaceholderEnabled" Value="False"/>
+
+        </Style>
+
+              <Style x:Key="buttonlogin" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="{StaticResource azul}" />
+            <Setter Property="HorizontalOptions" Value="Fill" />
+                  <Setter Property="VerticalOptions"  Value="Start"/>
+            <Setter Property="TextColor" Value="White" />
+                  <Setter Property="CornerRadius" Value="20" />
+        </Style>
+                  <Style x:Key="Textomediano" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource azul}" />
+                  <Setter Property="FontSize"  Value="Micro"/>
+        </Style>
+
+    
+</ResourceDictionary>

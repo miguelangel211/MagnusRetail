@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+          x:Class="CheckstoresMagnusRetail.Views.ViewCells.MuebleViewcell">
+    <ViewCell.View>
+        <StackLayout Orientation="Horizontal">
+            <buttons:SfButton x:Name="MuebleName"
+                              BackgroundColor="Transparent"
+                                 HorizontalTextAlignment="Start"
+                              HorizontalOptions="StartAndExpand"
+                              Clicked="abrirmueble"
+                              TextColor="Black" FontAttributes="Bold" FontSize="Medium" />
+                    <ui:MaterialIconButton Clicked="expandirmueble"
+            Image="{Binding Image}"   BackgroundColor="Transparent" HorizontalOptions="End" />
+        <ui:MaterialIconButton Clicked="EliminarMueble"
+            Image="trash.png"   BackgroundColor="Red" HorizontalOptions="End" />
+           </StackLayout>
+    </ViewCell.View>
+</ViewCell>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CheckstoresMagnusRetail.Views.Vewscontents.GuardandoProducto">
+    <ContentView.Content>
+                <StackLayout VerticalOptions="Start">
+        <ActivityIndicator IsRunning="True" Color="{StaticResource Key=azul}"  HeightRequest="20"/>
+            <Label Text="Guardando Producto" HorizontalOptions="Center" FontAttributes="Bold"  TextColor="{StaticResource Key=azul}" />
+                    <Label x:Name="Mensajerealizando"  HorizontalOptions="Center" FontAttributes="Bold"  TextColor="{StaticResource Key=azul}" />
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

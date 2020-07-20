@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+          xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+          xmlns:viewcells="clr-namespace:CheckstoresMagnusRetail.Views.ViewCells"
+          x:Class="CheckstoresMagnusRetail.Views.ViewCells.TramoNivelesMuebleViewCell">
+    <ViewCell.View>
+
+        <StackLayout>
+              <ui:MaterialCard Padding="5,5,5,5"  >
+                        <StackLayout>
+                            <Label x:Name="nombretramo" TextColor="{StaticResource Key=azul}" FontSize="Small" FontAttributes="Bold"
+                                   Text="{Binding TramoNumero ,Converter={StaticResource Key=converttramo}}"
+                                HorizontalOptions="CenterAndExpand" />
+
+                                      <syncfusion:SfListView 
+                                          x:Name="listView"
+                                          ItemsSource="{Binding Niveles}"
+                                          AutoFitMode="DynamicHeight"
+                                          ItemSpacing="5"
+                                          SelectionMode="None"
+                                        >
+                       <syncfusion:SfListView.ItemTemplate>
+                           <DataTemplate>
+                               <viewcells:NivelTramoCell />
+                           </DataTemplate>
+                           </syncfusion:SfListView.ItemTemplate>
+                       </syncfusion:SfListView>
+
+                        </StackLayout>
+                    </ui:MaterialCard>
+        </StackLayout>
+    </ViewCell.View>
+</ViewCell>

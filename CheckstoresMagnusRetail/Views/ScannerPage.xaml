@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CheckstoresMagnusRetail.Views.ScannerPage"
+             xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+             >
+    <ContentPage.Content>
+        <!--
+        <zxing:ZXingScannerView x:Name="BarcodeScanView"
+                                IsScanning="True" IsVisible="true"
+
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand"
+                                OnScanResult="Handle_OnScanResult" />-->
+    </ContentPage.Content>
+</ContentPage>

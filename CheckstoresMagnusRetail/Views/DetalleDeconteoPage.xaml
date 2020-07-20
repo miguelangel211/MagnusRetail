@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:viewmodels="clr-namespace:CheckstoresMagnusRetail.ViewModels"
+             xmlns:viewcells="clr-namespace:CheckstoresMagnusRetail.Views.ViewCells"
+             x:Class="CheckstoresMagnusRetail.Views.DetalleDeconteoPage">
+             <ContentPage.ToolbarItems>
+
+    <ToolbarItem 
+                 IconImageSource="barcodescanner.png"
+        Clicked="openscanner"
+                 Order="Primary"
+                 Priority="0" />
+        
+    <ToolbarItem 
+                 IconImageSource="plus.png"
+        Clicked="nuevoproducto"
+                 Order="Primary"
+                 Priority="1" />
+</ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout  Margin="8,0,8,0">
+           <ui:MaterialCard CornerRadius="20" Elevation="2" IsClickable="False">
+               <StackLayout>
+                   <Label x:Name="Nombretienda" Text="TIENDA: 18 - ATIZAPAN" FontAttributes="Bold" HorizontalOptions="CenterAndExpand"
+                          TextColor="{StaticResource Key=azul}" FontSize="Small" />
+                   <Label x:Name="Nombrecadena" Text="Walmart" FontAttributes="None" HorizontalOptions="CenterAndExpand"
+                          TextColor="{StaticResource Key=azul}" FontSize="Small" />
+                   <Label x:Name="nombremueble" Text="MUEBLE 271" FontAttributes="Bold"
+                          HorizontalOptions="CenterAndExpand" TextColor="{StaticResource Key=azul}" FontSize="Small" />
+
+               </StackLayout>
+
+            </ui:MaterialCard>
+                <viewmodels:InfiniteListView
+                    x:Name="ListProductos"
+                    ItemsSource="{Binding Prodcutos}"
+                    RefreshCommand="{Binding CargarData}"
+                    IsRefreshing="{Binding IsBusy,Mode=OneWay}"
+                    VerticalOptions="Start"
+                    IsPullToRefreshEnabled="True"
+                    HasUnevenRows="True"
+                    SelectionMode="None"
+                    ItemTapped="tappedproducto"
+                    >    <x:Arguments>
+        <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
+    </x:Arguments>
+                   <viewmodels:InfiniteListView.ItemTemplate>
+                        <DataTemplate>
+                            <viewcells:ProductoConteoViewCell Producto="{Binding .}" />
+
+                        </DataTemplate>
+                   </viewmodels:InfiniteListView.ItemTemplate>
+
+                </viewmodels:InfiniteListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

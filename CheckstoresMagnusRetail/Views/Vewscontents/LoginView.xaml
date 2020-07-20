@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material" xmlns:syncfusion="clr-namespace:Syncfusion.XForms.MaskedEdit;assembly=Syncfusion.SfMaskedEdit.XForms" x:Class="CheckstoresMagnusRetail.Views.Vewscontents.LoginView">
+    <ContentView.Content>
+        <Grid Margin="15,0,15,0">
+    <Grid.RowDefinitions>
+
+        <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="2*" />
+        <ColumnDefinition Width="6*" />
+        <ColumnDefinition Width="2*"/>
+    </Grid.ColumnDefinitions>
+
+    <Image Grid.Row="0" Grid.Column="1" Source="Logo.png" Aspect="AspectFit"  HorizontalOptions="CenterAndExpand"/>
+    <StackLayout Grid.Row="1" Grid.ColumnSpan="3" VerticalOptions="Center">
+          <inputLayout:SfTextInputLayout
+              x:Name="usuarioinput"
+            LeadingViewPosition="Inside"
+            Hint="Usuario"
+            ContainerType="Filled"
+            FocusedColor="{StaticResource Key=disabledtext}"
+            ContainerBackgroundColor="{StaticResource Key=blanco}"
+                      ErrorText="ingrese el Usuario"
+            ErrorColor="Red"
+              
+              HasError="{Binding Errorusuario}"
+            >
+                <inputLayout:SfTextInputLayout.LeadingView
+                    >
+       <material:MaterialIcon
+           Source="usericon.png">     
+       </material:MaterialIcon>
+    </inputLayout:SfTextInputLayout.LeadingView>
+<Entry x:Name="usuario" Text="{Binding Usuario}"/>
+        </inputLayout:SfTextInputLayout>
+
+
+        <inputLayout:SfTextInputLayout
+            x:Name="passwordinput"
+            LeadingViewPosition="Inside"
+            Hint="Contraseña"
+            ContainerType="Filled"
+            FocusedColor="{StaticResource Key=disabledtext}"
+            ContainerBackgroundColor="{StaticResource Key=blanco}"
+           ErrorText="ingrese la Contraseña"
+            ErrorColor="Red"
+            HasError="{Binding Errorpassword}"
+            >
+
+                <inputLayout:SfTextInputLayout.LeadingView
+                    >
+       <material:MaterialIcon
+           Source="lock.png">     
+       </material:MaterialIcon>
+    </inputLayout:SfTextInputLayout.LeadingView>
+              <syncfusion:SfMaskedEdit
+                  x:Name="maskedEdit" Mask="\w+" Value="{Binding Password}"
+                  MaskType="RegEx" PasswordChar="*" EnablePasswordDelay="True"   />
+
+
+        </inputLayout:SfTextInputLayout>
+
+
+      </StackLayout>
+    <Button Clicked="login_clickAsync" Grid.Row="2" Grid.ColumnSpan="3" Text="Ingresar" VerticalOptions="Center"
+        Style="{StaticResource Key=buttonlogin}"/>
+
+</Grid>
+    </ContentView.Content>
+</ContentView>

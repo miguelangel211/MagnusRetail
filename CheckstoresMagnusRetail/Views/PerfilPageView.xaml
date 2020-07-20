@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:magic="clr-namespace:MagicGradients;assembly=MagicGradients" xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+             x:Class="CheckstoresMagnusRetail.Views.PerfilPageView"
+             >
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".3*" />
+                <RowDefinition Height=".4*" />
+                <RowDefinition Height=".2*" />
+                                <RowDefinition Height=".1*" />
+
+            </Grid.RowDefinitions>
+ <magic:GradientView VerticalOptions="FillAndExpand" Grid.Row="0">
+     <magic:GradientView.GradientSource>
+         <magic:LinearGradient Angle="0">
+             <magic:GradientStop Color="#311369" Offset="0" />
+             <magic:GradientStop Color="#31C2C9" Offset="1" />
+         </magic:LinearGradient>
+     </magic:GradientView.GradientSource>
+ </magic:GradientView>
+            <StackLayout Grid.Row="1" >
+  <sfavatar:SfAvatarView Margin="0,-50,0,0" BackgroundColor="#EFF1F6"
+                         VerticalOptions="StartAndExpand" ContentType="Custom" 
+                   BorderWidth="0" 
+                         HorizontalOptions="Center"
+                                       CornerRadius="40" HeightRequest="80" WidthRequest="80"
+                         ImageSource="perfil.png"></sfavatar:SfAvatarView>
+                <Label x:Name="NombreUsuario"  TextColor="Black" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center"/>
+                <Label x:Name="email" HorizontalOptions="Center" />
+                <Label x:Name="telefono" HorizontalOptions="Center"/>
+<Button Grid.Row="2"  
+                    CornerRadius="20" BackgroundColor="{StaticResource Key=Gris}"
+                    Clicked="reiniciardb" WidthRequest="150"
+        HorizontalOptions="Center"
+                    Margin="0,0,0,0"
+                    BorderColor="{StaticResource Key=azul}" BorderWidth="2" TextColor="{StaticResource Key=azul}"
+        Text="Borrar datos" />
+                <Button Grid.Row="3"   x:Name="botoncargaerrores"
+                    CornerRadius="20" BackgroundColor="{StaticResource Key=Gris}"
+                    Clicked="cargarerrores" WidthRequest="150"
+        HorizontalOptions="Center"
+                    Margin="0,0,0,0"
+                    BorderColor="{StaticResource Key=azul}" BorderWidth="2" TextColor="{StaticResource Key=azul}"
+        Text="Cargar Log de Errores" />
+                </StackLayout>
+            <Button Grid.Row="2" VerticalOptions="EndAndExpand" 
+                    CornerRadius="20" BackgroundColor="{StaticResource Key=Gris}"
+                    FontAttributes="Bold"
+                    Clicked="logout"
+                    FontSize="Large" Margin="8,0,8,0"
+                    BorderColor="{StaticResource Key=azul}" BorderWidth="5" TextColor="{StaticResource Key=azul}" Text="Salir" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

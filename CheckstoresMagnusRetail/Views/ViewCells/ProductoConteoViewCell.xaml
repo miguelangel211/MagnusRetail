@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CheckstoresMagnusRetail.Views.ViewCells.ProductoConteoViewCell">
+                             <Frame>
+
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="15"/>
+                                        <RowDefinition Height="15"/>
+                                        <RowDefinition Height="15"/>
+                                        <RowDefinition Height="15"/>
+                                        <RowDefinition Height="15"/>
+                                      <!--  <RowDefinition Height="15"/>-->
+                                   </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width=".50*" />
+                                        <ColumnDefinition Width=".50*"/>
+                                    </Grid.ColumnDefinitions>
+                                       <Label LineBreakMode="WordWrap" x:Name="Nombre" Text="Nombre: Alcohol Etilico" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource Textomediano}" />
+
+                                        <Label LineBreakMode="WordWrap" x:Name="UPC" Text="UPC: 75010443323" Grid.Row="1" Grid.Column="0" Style="{StaticResource Textomediano}" />
+                                        <Label LineBreakMode="WordWrap" x:Name="Gramaje" Text="GRAMAJE: 1L" Grid.Row="1" Grid.Column="1" Style="{StaticResource Textomediano}" />
+                                         <Label LineBreakMode="WordWrap" x:Name="Marca" Text="MARCA: MEDIMART" Grid.Row="2" Grid.Column="0" Style="{StaticResource Textomediano}" />
+                                        <Label LineBreakMode="WordWrap" x:Name="Alto" Text="ALTO: 24CM" Grid.Row="2" Grid.Column="1" Style="{StaticResource Textomediano}" />
+                                         <Label LineBreakMode="WordWrap" Text="Fabricante:" Grid.Row="3" Grid.Column="0" Style="{StaticResource Textomediano}" />                                        
+                                        <Label LineBreakMode="WordWrap" x:Name="Ancho" Text="ANCHO: 8CM" Grid.Row="3" Grid.Column="1" Style="{StaticResource Textomediano}" />
+                                         <Label LineBreakMode="WordWrap" x:Name="Fabricante" Text="DEGASA S.A. DE C.V." Grid.Row="4" Grid.Column="0" Style="{StaticResource Textomediano}" />                                        
+                                        <Label LineBreakMode="WordWrap" x:Name="Produndo" Text="PROFUNDO: 8CM" Grid.Row="4" Grid.Column="1" Style="{StaticResource Textomediano}" />                                    
+                                <!--        <Label x:Name="Cantfrente" Text="CANT FRENTES: 3" Grid.Row="5" Grid.Column="0" Style="{StaticResource Textomediano}" />          
+
+                                        <Label x:Name="Cantprofundo" Text="CANT PROFUNDO: 3" Grid.Row="5" Grid.Column="1" Style="{StaticResource Textomediano}" />          -->
+
+                                </Grid>
+                                </Frame>
+
+</ViewCell>

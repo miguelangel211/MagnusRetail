@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material" x:Class="CheckstoresMagnusRetail.Views.ViewCells.NivelTramoCell">
+    <ViewCell.View>
+                            <Frame BorderColor="{StaticResource Key=azul}" Padding="2,1,1,1">
+                                            <Grid RowSpacing="0"  >
+     
+                                          <Grid.RowDefinitions>
+                                              <RowDefinition Height="auto"/>
+                                              <RowDefinition Height="auto"/>
+                                          </Grid.RowDefinitions>
+                                               <Grid.ColumnDefinitions>
+                                                   <ColumnDefinition Width=".33*"/>
+                                                   <ColumnDefinition Width=".33*"/>
+                                                   <ColumnDefinition Width=".33*"/>
+
+                                               </Grid.ColumnDefinitions>
+                                 <Label TextColor="{StaticResource Key=azul}" Grid.Row="0" FontSize="Micro" Grid.ColumnSpan="3"
+                                        FontAttributes="Bold" Text="{Binding NombreNivel}"  />
+                                   
+                            <Label Text="{Binding NumeroNivel}" x:Name="nivelnumero" IsVisible="False" />
+                               <ui:MaterialTextField x:Name="profucdocell" InputType="Numeric" 
+                                                     Grid.Row="1" Grid.Column="0" InputTransparent="{Binding Editable}"  TextFontSize="10" Placeholder="Profundo" Text="{Binding Profundo}" TextChanged="DatocambiadoProfundo"
+                               BackgroundColor="White" 
+                            
+                               TintColor="{StaticResource Key=azul}"
+                               />
+                                                              <ui:MaterialTextField x:Name="Anchocell" InputType="Numeric" 
+                                                                                    InputTransparent="{Binding Editable}" Grid.Column="1" Grid.Row="1" TextFontSize="10" Placeholder="Ancho" Text="{Binding Ancho}" TextChanged="DatocambiadoAncho"
+                               BackgroundColor="White" 
+                            
+                               TintColor="{StaticResource Key=azul}"
+                               />
+                                                              <ui:MaterialTextField x:Name="Altocell" InputTransparent="{Binding Editable}" InputType="Numeric" 
+                                                                                    Grid.Column="2" Grid.Row="1" TextFontSize="10" Placeholder="Alto" Text="{Binding Alto}" TextChanged="DatocambiadoAlto"
+                               BackgroundColor="White" 
+                            
+                               TintColor="{StaticResource Key=azul}"
+                               />
+                                       
+                                </Grid>                               
+                            </Frame>
+    </ViewCell.View>
+</ViewCell>

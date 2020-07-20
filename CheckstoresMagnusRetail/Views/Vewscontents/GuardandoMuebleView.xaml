@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CheckstoresMagnusRetail.Views.Vewscontents.GuardandoMuebleView">
+    <ContentView.Content>
+        <StackLayout VerticalOptions="Start">
+        <ActivityIndicator IsRunning="True" Color="{StaticResource Key=azul}"  HeightRequest="20"/>
+            <Label Text="Guardando Nuevo Mueble" HorizontalOptions="Center" FontAttributes="Bold"  TextColor="{StaticResource Key=azul}" />
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

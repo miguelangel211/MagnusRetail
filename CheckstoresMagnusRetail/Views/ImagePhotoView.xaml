@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views1="clr-namespace:CheckstoresMagnusRetail.Views.ViewCells"
+             xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:conv="clr-namespace:CheckstoresMagnusRetail.Methods"
+             x:Class="CheckstoresMagnusRetail.Views.ImagePhotoView">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <conv:ByteArrayToImageSourceConverter x:Key="bic" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+        <ContentPage.ToolbarItems>
+
+        
+    <ToolbarItem 
+                 IconImageSource="correct.png"
+                 Order="Primary"
+        Clicked="close"
+                 Priority="0" />
+</ContentPage.ToolbarItems>
+    <ContentPage.Content>
+     <Grid>
+         <Grid.RowDefinitions>
+             <RowDefinition Height="*" />
+                          <RowDefinition Height="100" />
+             <RowDefinition Height="50" />
+         </Grid.RowDefinitions>
+    
+         <Grid.ColumnDefinitions >
+             <ColumnDefinition Width=".5*"/>
+             <ColumnDefinition Width=".5*" />
+         </Grid.ColumnDefinitions>
+              <Picker
+             IsVisible="False" x:Name="fotosource"
+                SelectedIndexChanged="Modoseleccionado"
+                  Title="Seleccionar Imagen"
+                 
+             >
+
+                  <Picker.ItemsSource>
+                      <x:Array Type="{x:Type x:String}">
+                          <x:String>Tomar Foto</x:String>
+                          <x:String>Seleccionar de la galeria</x:String>
+                      </x:Array>
+                  </Picker.ItemsSource>
+              </Picker>
+            <views1:PhotoZoom Grid.Row="0" Grid.ColumnSpan="2" >
+             <!--       <Image x:Name="photoselected"    Source="{Binding FotoActual,Converter={StaticResource bic}}" />-->
+              
+              
+                <ff:CachedImage x:Name  = "photoselected" 
+                LoadingPlaceholder   = "album.png"
+                                
+                ErrorPlaceholder     = "Error"
+                WidthRequest         = "150"
+                HeightRequest        = "150"
+                CacheDuration        = "30"
+                RetryCount           = "5"
+                RetryDelay           = "450"
+                Source="{Binding FotoActual,Converter={StaticResource bic}}"
+                DownsampleToViewSize = "true">  
+                </ff:CachedImage>
+            </views1:PhotoZoom>
+                     <syncfusion:SfListView x:Name="listView"
+                                            ItemTapped="fotoselccionada"
+                                            ItemsSource="{Binding ListadeImagenes}"
+                                            Grid.Row="1"  Grid.ColumnSpan="2"
+                                            Orientation="Horizontal"
+                                            ItemSize="80"
+                                            >
+                <syncfusion:SfListView.ItemTemplate>
+                    <DataTemplate x:Name="ItemTemplate" >
+                              <!--      <Image  Source="{Binding ContactImage,Converter={StaticResource bic}}" 
+                           Aspect="AspectFill" />-->
+                                        <ff:CachedImage x:Name  = "photoselected" 
+                LoadingPlaceholder   = "album.png"
+                      Aspect="AspectFill"          
+                ErrorPlaceholder     = "Error"
+                WidthRequest         = "150"
+                HeightRequest        = "150"
+                CacheDuration        = "30"
+                RetryCount           = "5"
+                RetryDelay           = "450"
+                Source="{Binding ContactImage,Converter={StaticResource bic}}"
+                DownsampleToViewSize = "true">  
+                </ff:CachedImage>
+
+
+
+
+
+
+                                               
+                    </DataTemplate>
+                </syncfusion:SfListView.ItemTemplate>
+            </syncfusion:SfListView>
+         <BoxView Grid.Row="2" Grid.ColumnSpan="2" BackgroundColor="{StaticResource Key=azul}"></BoxView>
+
+         <buttons:SfButton Grid.Row="2" Grid.Column="0" HorizontalOptions="Fill"
+                           ImageSource="photo.png"
+                           ShowIcon="True"
+                           Clicked="tomarfotoclick"
+                           HeightRequest="50"
+                           Text="Agregar Foto"
+                           BackgroundColor="{StaticResource Key=azul}"
+                           />
+                  <buttons:SfButton Grid.Row="2" Grid.Column="1" HorizontalOptions="Fill"
+                          
+                           ShowIcon="True"
+                           Clicked="eliminarfoto"
+                           HeightRequest="50"
+                           Text="Eliminar"
+                           BackgroundColor="{StaticResource Key=azul}"
+                           />
+         </Grid>
+    </ContentPage.Content>
+</ContentPage>

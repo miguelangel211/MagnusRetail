@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:viewmodels="clr-namespace:CheckstoresMagnusRetail.ViewModels"
+             xmlns:viewcells="clr-namespace:CheckstoresMagnusRetail.Views.ViewCells"
+             x:Class="CheckstoresMagnusRetail.Views.Vewscontents.TiendaDetailView"
+             x:Name="tienda"
+             >
+       
+           <StackLayout>
+
+
+               <ui:MaterialCard Margin="8,6,5,8"  CornerRadius="20"  Clicked="openphotoviewer" IsClickable="True">
+                   <StackLayout Orientation="Horizontal" HeightRequest="30">
+                   <Image  Source="photo.png" HeightRequest="30" Grid.Column="0" />
+                   <Label  Text="FOTO DE LAYOUT" TextColor="Black" VerticalOptions="CenterAndExpand" ClassId="CrearNuevoMueble"  FontAttributes="Bold" FontSize="Large"/>
+
+                       </StackLayout>
+               </ui:MaterialCard>
+          <viewmodels:InfiniteListView 
+            Margin="5,0,5,0"
+          x:Name="ListaMuebles"
+            ItemsSource="{Binding MueblesEnTienda}"
+          HasUnevenRows="True"  
+  RefreshCommand="{Binding CargarData}"
+              
+              IsGroupingEnabled="True"
+                              IsRefreshing="{Binding IsBusy,Mode=OneWay}"
+          SeparatorVisibility="None"
+          IsPullToRefreshEnabled="True"
+              
+          >    <x:Arguments>
+        <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
+    </x:Arguments>
+                  <ListView.GroupHeaderTemplate>
+                        <DataTemplate>
+                                <viewcells:MuebleViewcell  ParentContext="{Binding BindingContext, Source={x:Reference tienda}}" Mueble ="{Binding Mueble}" />
+                        </DataTemplate>
+
+                  </ListView.GroupHeaderTemplate>
+                  <ListView.ItemTemplate>
+                      <DataTemplate>
+                          <viewcells:TramoViewCell Tramo="{Binding .}" />
+                      </DataTemplate>
+                  </ListView.ItemTemplate>
+
+      </viewmodels:InfiniteListView>
+               <ui:MaterialButton HorizontalOptions="FillAndExpand"
+                                  x:Name="concluirbutton"
+                                  Clicked="Concluirservicioclick"
+                                  BackgroundColor="{StaticResource azul}" TextColor="White"
+                                  FontSize="Small" FontAttributes="Bold"
+                                  Text="Concluir Servicio"/>
+            </StackLayout>
+</ContentView>

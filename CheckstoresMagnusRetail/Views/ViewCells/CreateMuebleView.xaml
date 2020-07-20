@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material" xmlns:viewmodels="clr-namespace:CheckstoresMagnusRetail.ViewModels" x:Class="CheckstoresMagnusRetail.Views.ViewCells.CreateMuebleView">
+    <ContentView.Content>
+        <ScrollView>
+        <Grid  Margin="5,0,5,0" >
+               <Grid.RowDefinitions>
+                   <RowDefinition Height="90" />
+                   <RowDefinition Height="90" />
+                   <RowDefinition Height="200" />
+                   <RowDefinition Height="200" />
+                   <RowDefinition Height="60" />
+                   <RowDefinition Height="60" />
+                   <RowDefinition Height="60" />
+
+               </Grid.RowDefinitions>
+               <Grid.ColumnDefinitions>
+                   <ColumnDefinition Width=".5*" />
+                   <ColumnDefinition Width=".5*" />
+               </Grid.ColumnDefinitions>
+
+
+         <ui:MaterialTextField  Grid.Row="0" Grid.ColumnSpan="2" HeightRequest="50"
+                               Placeholder="Cara"  BackgroundColor="White"   TintColor="{StaticResource Key=azul}"
+                                ErrorText="Ingrese la cara del mueble"
+                                HasError="{Binding MuebleData.CaraError}"
+                              />
+         <ui:MaterialTextField Grid.Row="1" HeightRequest="50"  Grid.ColumnSpan="2" Placeholder="Pasillo"  BackgroundColor="White"
+                                ErrorText="Ingrese el pasillo del mueble"
+                               TintColor="{StaticResource Key=azul}"
+                               HasError="{Binding MuebleData.PasilloError}"
+                               />
+            <ui:MaterialTextField Grid.Row="2" HeightRequest="50" Grid.ColumnSpan="2" Placeholder="Tramo Inicial"  BackgroundColor="White"
+                                  ErrorText="Ingrese el tramo inicial"
+                                   TintColor="{StaticResource Key=azul}" />
+
+          <ui:MaterialCard Grid.Row="3" Grid.ColumnSpan="2">
+              <StackLayout>
+                  <Label Text="Categorias" FontSize="Medium" />
+                <viewmodels:InfiniteListView
+                    x:Name="ListProducto" HeightRequest="200"
+                    VerticalOptions="Start"
+                    HasUnevenRows="True"
+                    ItemsSource="{Binding Categorias}"
+                    RowHeight="20"
+                    SelectionMode="None"
+                    SeparatorVisibility="None"
+                 >    <x:Arguments>
+        <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
+    </x:Arguments>
+                   <viewmodels:InfiniteListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                <CheckBox IsChecked="False" Color="{StaticResource Key=azul}" />
+                                <Label Text="{Binding Categoria}" />
+                                  </StackLayout>
+                                </ViewCell>
+                        </DataTemplate>
+                    </viewmodels:InfiniteListView.ItemTemplate>
+
+                </viewmodels:InfiniteListView>
+          </StackLayout>
+          </ui:MaterialCard>
+                  <ui:MaterialTextField Grid.Row="4" Grid.Column="0" IsTextPredictionEnabled="True"
+                               Placeholder="TIPO DE MUEBLE" FloatingPlaceholderEnabled="True"  BackgroundColor="White"   TintColor="{StaticResource Key=azul}"
+                              />
+         <ui:MaterialTextField Grid.Row="4" Grid.Column="1" Placeholder="ALTURA" 
+                               BackgroundColor="White" FloatingPlaceholderEnabled="True"
+                            
+                               TintColor="{StaticResource Key=azul}"
+                               />
+            <ui:MaterialTextField Grid.Row="5" Grid.Column="0" 
+                Placeholder="TRAMOS" FloatingPlaceholderEnabled="True" InputType="Numeric"  BackgroundColor="White"
+                                   TintColor="{StaticResource Key=azul}" />
+
+                     <ui:MaterialTextField Grid.Row="5" Grid.Column="1" 
+                Placeholder="MEDIDAS IGUALES" FloatingPlaceholderEnabled="True"  BackgroundColor="White"
+                                   TintColor="{StaticResource Key=azul}" />
+                                <ui:MaterialTextField Grid.Row="6" Grid.Column="0" 
+                Placeholder="NIVEL MINIMO" FloatingPlaceholderEnabled="True" InputType="Numeric" BackgroundColor="White"
+                                   TintColor="{StaticResource Key=azul}" />
+
+                     <ui:MaterialTextField Grid.Row="6" Grid.Column="1" 
+                Placeholder="NIVEL MAXIMO " FloatingPlaceholderEnabled="True" InputType="Numeric"  BackgroundColor="White"
+                                   TintColor="{StaticResource Key=azul}" />
+                    <ui:MaterialCard Grid.Row="7" Grid.ColumnSpan="2" Margin="5,0,5,0">
+                        <StackLayout>
+                            <Label TextColor="{StaticResource Key=azul}" FontSize="Large" FontAttributes="Bold" Text="Tramo 2" HorizontalOptions="CenterAndExpand" />
+                            <ui:MaterialCard CornerRadius="20" BorderColor="{StaticResource Key=azul}">
+                                <StackLayout>
+                                 <Label TextColor="{StaticResource Key=azul}" FontSize="Medium"
+                                        FontAttributes="Bold" Text="NIVEL 1"  />
+                                    <StackLayout Orientation="Horizontal">
+                                        <Grid>
+                               <ui:MaterialTextField Grid.Column="0" Placeholder="Profundo" 
+                               BackgroundColor="White" FloatingPlaceholderEnabled="True"
+                            
+                               TintColor="{StaticResource Key=azul}"
+                               />
+                                                              <ui:MaterialTextField Grid.Column="1" Placeholder="Ancho" 
+                               BackgroundColor="White" FloatingPlaceholderEnabled="True"
+                            
+                               TintColor="{StaticResource Key=azul}"
+                               />
+                                                              <ui:MaterialTextField Grid.Column="2" Placeholder="Alto Charola" 
+                               BackgroundColor="White" FloatingPlaceholderEnabled="True"
+                            
+                               TintColor="{StaticResource Key=azul}"
+                               />
+                                            </Grid>
+                                    </StackLayout>
+                                </StackLayout>
+                            </ui:MaterialCard>
+                        </StackLayout>
+                    </ui:MaterialCard>
+
+            <ui:MaterialTextField Grid.Row="8" Grid.ColumnSpan="2" Placeholder="Comentario"    BackgroundColor="White"
+                                     TintColor="{StaticResource Key=azul}" />
+        </Grid>
+            </ScrollView>
+    </ContentView.Content>
+</ContentView>

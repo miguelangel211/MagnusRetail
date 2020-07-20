@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+          xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+          x:Class="CheckstoresMagnusRetail.Views.TiendasViewCell">
+    <ui:MaterialCard HasShadow="True" x:Name="cardclicked" IsClickable="True" Margin="0"  Clicked="tiendaclicked" Padding="0">
+            <StackLayout Margin="0,0,0,5" Padding="2"   Orientation="Horizontal">
+
+
+                <sfavatar:SfAvatarView ContentType="Custom" BorderColor="{StaticResource Key=mist}" BorderWidth="2"
+                                       VerticalOptions="Center" HorizontalOptions="Start"
+                                       CornerRadius="20" HeightRequest="40" WidthRequest="40"
+                                       ImageSource="shop.png"></sfavatar:SfAvatarView>
+
+
+            <StackLayout HorizontalOptions="StartAndExpand">
+
+            <Label x:Name="ChainName"  VerticalOptions="StartAndExpand" FontSize="Small" FontAttributes="Bold" TextColor="Black"/>
+            <Label x:Name="TiendaName" LineBreakMode="WordWrap" VerticalOptions="StartAndExpand" FontSize="Micro" FontAttributes="Bold" TextColor="Black"/>
+        </StackLayout>
+                
+
+              <buttons:SfButton
+                  PressedBackgroundColor="Red"
+                  BackgroundColor="Transparent"
+                  ImageSource="pin.png"
+                  ShowIcon="True"
+                  Clicked="linkclicked"
+                  WidthRequest="50"
+                  HeightRequest="40"
+                  HorizontalOptions="End"   />
+
+            </StackLayout>
+        </ui:MaterialCard>
+</ViewCell>

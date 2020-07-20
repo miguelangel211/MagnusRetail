@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:CheckstoresMagnusRetail.ViewModels"
+             xmlns:views="clr-namespace:CheckstoresMagnusRetail.Views"
+             xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+    x:Class="CheckstoresMagnusRetail.Views.HomeView"
+             >
+    <ContentPage.ToolbarItems>
+    <ToolbarItem 
+                 IconImageSource="{Binding ImagenSincro}"
+                 Order="Primary"
+        Clicked="servicioclickedAsync"
+                 Priority="0" />
+</ContentPage.ToolbarItems>
+
+    <ContentPage.Content >
+        <StackLayout  >
+                    <StackLayout Orientation="Horizontal" IsVisible="{Binding Logginvisible}"
+                                 BackgroundColor="{StaticResource Key=azul}" x:Name="loglayout"   >
+                <Label Text="{Binding OperacionActiva}" TextColor="Yellow"  ></Label>
+                <ActivityIndicator HeightRequest="14" HorizontalOptions="EndAndExpand" Color="{StaticResource Key=mist}" IsRunning="{Binding SincronizacionData}" /> 
+                        <buttons:SfButton Text="Cerrar" BackgroundColor="Transparent" IsVisible="{Binding Botoncerraractivo}"  TextColor="White" Clicked="cerrarlog"  />
+                    </StackLayout>
+        <StackLayout Margin="8,1,8,0" Spacing="2">
+
+            <ui:MaterialCard CornerRadius="20" Elevation="2" IsClickable="False">
+               <StackLayout Orientation="Horizontal">
+                   <Label Text="Programa" FontAttributes="Bold" TextColor="Black" FontSize="Medium" />
+                   <StackLayout HorizontalOptions="CenterAndExpand">
+                       <Label Text="{Binding FechaTexto}" FontSize="Small" HorizontalOptions="Center"/>
+                       <Label Text="{Binding NumeroPendientes,StringFormat='Pendientes {0}'}"  HorizontalOptions="Center"  TextColor="#336B87" />
+
+                   </StackLayout>
+               </StackLayout>
+
+            </ui:MaterialCard>
+            <ui:MaterialCard   CornerRadius="20" Elevation="2" VerticalOptions="FillAndExpand" IsClickable="False" >
+
+                          <viewmodels:InfiniteListView Opacity="{Binding Opacitylist}"
+                              x:Name="ListaTiendas"
+                              ItemsSource="{Binding Tiendas}"
+                              VerticalOptions="FillAndExpand"
+                              HasUnevenRows="True"
+                              IsPullToRefreshEnabled="True"
+                              IsGroupingEnabled="True"
+                              RefreshCommand="{Binding CargarData}"
+                             SeparatorColor="Transparent"
+                              ItemTapped="tappedservice"
+                            
+                              SelectionMode="None"
+                             
+                              IsRefreshing="{Binding IsBusy,Mode=OneWay}"
+                              >    <x:Arguments>
+        <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
+    </x:Arguments>
+                                    <ListView.GroupHeaderTemplate>
+                                        <DataTemplate >
+                                            <views:TiendasViewCell  Tienda="{Binding Heading}"/>
+                                        </DataTemplate>
+                                    </ListView.GroupHeaderTemplate>
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                           
+                                        <views:ServicioViewCell  Servicio="{Binding .} "/>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                           </viewmodels:InfiniteListView>
+            </ui:MaterialCard>
+            </StackLayout>
+            </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

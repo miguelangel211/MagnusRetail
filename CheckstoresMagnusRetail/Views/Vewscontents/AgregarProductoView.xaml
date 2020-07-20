@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material" xmlns:xforms="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:viewcells="clr-namespace:CheckstoresMagnusRetail.Views.ViewCells" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms" x:Class="CheckstoresMagnusRetail.Views.Vewscontents.AgregarProductoView">
+    <ContentView.Content>
+          <ScrollView>
+              <StackLayout Margin="15,0,15,0">
+                             
+            <ui:MaterialButton Text="Datos de Producto" BorderColor="{StaticResource Key=azul}" TextColor="{StaticResource Key=azul }" Grid.Row="0"  Grid.ColumnSpan="2"
+                               Command="{Binding VisualizarProductoDatos}" CornerRadius="10" BorderWidth="2"
+                                HorizontalOptions="StartAndExpand"  BackgroundColor="Transparent" PressedBackgroundColor="{StaticResource Key=mist}"/>
+                
+        <Grid Margin="0,0,0,0" IsVisible="{Binding SeccionProductoVisibilidad}" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".5*"/>
+                <ColumnDefinition Width=".5*" />
+            </Grid.ColumnDefinitions>
+
+         <ui:MaterialTextField x:Name="upc" IsVisible="{Binding SeccionProductoVisibilidad}"  Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding DatosForma.UPC}" InputTransparent="{Binding Modoforma}"
+                               TextChangeCommand="{Binding BuscarProducto}" 
+                               Placeholder="UPC"  BackgroundColor="White"   TintColor="{StaticResource Key=azul}"
+                              />
+            
+         <ui:MaterialTextField IsVisible="{Binding SeccionProductoVisibilidad}" Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding DatosForma.Nombre}" InputTransparent="{Binding Modoforma}"
+                               Placeholder="NOMBRE"  BackgroundColor="White"   TintColor="{StaticResource Key=azul}"
+                              />
+            
+         <ui:MaterialTextField IsVisible="{Binding SeccionProductoVisibilidad}" Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding DatosForma.Marca}" InputTransparent="{Binding Modoforma}"
+                               Placeholder="MARCA"  BackgroundColor="White"   TintColor="{StaticResource Key=azul}"
+                              />
+            
+         <ui:MaterialTextField IsVisible="{Binding SeccionProductoVisibilidad}" Grid.Row="3" Grid.ColumnSpan="2" Text="{Binding DatosForma.Fabricante}" InputTransparent="{Binding Modoforma}"
+                               Placeholder="FABRICANTE"  BackgroundColor="White"   TintColor="{StaticResource Key=azul}"
+                              />
+            
+         <ui:MaterialTextField IsVisible="{Binding SeccionProductoVisibilidad}" Grid.Row="4" Grid.Column="0" Text="{Binding DatosForma.Gramaje}" InputTransparent="{Binding Modoforma}"
+                               Placeholder="GRAMAJE"  BackgroundColor="White"   TintColor="{StaticResource Key=azul}"
+                              />
+            
+         <ui:MaterialTextField IsVisible="{Binding SeccionProductoVisibilidad}" Grid.Row="4" Grid.Column="1" Text="{Binding DatosForma.Alto}" InputTransparent="{Binding Modoforma}"
+                               Placeholder="ALTO"  BackgroundColor="White" InputType="Numeric"    TintColor="{StaticResource Key=azul}"
+                              />
+            
+         <ui:MaterialTextField IsVisible="{Binding SeccionProductoVisibilidad}"  Grid.Row="5" Grid.Column="0" Text="{Binding DatosForma.Ancho}" InputTransparent="{Binding Modoforma}"
+                               Placeholder="ANCHO"  BackgroundColor="White" InputType="Numeric"    TintColor="{StaticResource Key=azul}"
+                              />
+            
+         <ui:MaterialTextField  Grid.Row="5" Grid.Column="1" Text="{Binding DatosForma.Profundo}" InputTransparent="{Binding Modoforma}"
+                               Placeholder="PROFUNDO"  BackgroundColor="White" InputType="Numeric"   TintColor="{StaticResource Key=azul}"
+                              />
+
+            <inputLayout:SfTextInputLayout Hint="Categoria" Grid.Row="6"  Grid.Column="0" Grid.ColumnSpan="2"
+                                      InputTransparent="{Binding Modoforma}"
+                                        HeightRequest="50"
+                                                   EnableFloating="True"
+                                                   ContainerBackgroundColor="White" ContainerType="Filled"
+
+                                                   FocusedColor="{StaticResource Key=azul}"
+                                                   >
+                            <combobox:SfComboBox x:Name="categoriaproducto" DisplayMemberPath="CategoriaNombre"
+                                    TextColor="{StaticResource Key=azul}" 
+                                                 SelectedValuePath="CategoriaID"
+                                                 SelectedValue="{Binding DatosForma.CategoriaID,Mode=TwoWay}"
+                                                 SelectedItem="{Binding DatosForma.Categoria}"
+                                    DataSource="{Binding Categorias}">
+                                
+                                   <combobox:SfComboBox.ItemTemplate>
+                                       <DataTemplate>
+                                       <Label Text="{Binding CategoriaNombre}" />
+                                           </DataTemplate>
+                                       </combobox:SfComboBox.ItemTemplate>
+
+                           </combobox:SfComboBox>
+                        </inputLayout:SfTextInputLayout>
+
+                    </Grid>
+
+            <xforms:SfListView
+                ItemsSource="{Binding Niveles}"
+                HeightRequest="{Binding Alturalistaniveles}"
+                AutoFitMode="DynamicHeight"
+                >
+                <xforms:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <viewcells:NivelFormaProductoViewCell />
+                    </DataTemplate>
+                </xforms:SfListView.ItemTemplate>
+            </xforms:SfListView>
+                <ui:MaterialCard  HeightRequest="60"  CornerRadius="20"  Clicked="openphotoviewer" IsClickable="True">
+                   <StackLayout Orientation="Horizontal" HeightRequest="30">
+                   <Label  Text="FOTOS DE PRODUCTO" TextColor="Black"
+                           VerticalOptions="CenterAndExpand" ClassId="CrearNuevoMueble"  FontAttributes="Bold" FontSize="Large"/>
+                                          <Image  Source="photo.png" HeightRequest="30" HorizontalOptions="End" />
+
+                       </StackLayout>
+               </ui:MaterialCard>
+                                </StackLayout>
+              </ScrollView>
+    </ContentView.Content>
+</ContentView>

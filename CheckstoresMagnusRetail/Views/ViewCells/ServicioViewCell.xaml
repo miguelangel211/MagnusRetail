@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" x:Class="CheckstoresMagnusRetail.Views.ServicioViewCell">
+    <Grid Margin="0,0,0,5" Padding="2" >
+            <Grid.RowDefinitions >
+                <RowDefinition Height="15" />
+                <RowDefinition Height="15"/>
+            </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+             <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="2"/>
+        </Grid.ColumnDefinitions>
+                <BoxView x:Name="EstatusServicio" Grid.Column="2" Grid.RowSpan="2" />
+
+                    <Label Grid.Row="0" x:Name="ServicioID" Grid.Column="1"   HorizontalOptions="EndAndExpand" FontSize="Micro"
+                           TextColor="{StaticResource Key=azul}"/>
+
+            <Label Grid.Row="0" x:Name="ServicioName" Grid.Column="0" FontSize="Micro" FontAttributes="Bold" TextColor="Black" />
+            <Label Grid.Row="1" x:Name="ServicioFecha" Grid.Column="1"   HorizontalOptions="EndAndExpand" FontSize="Micro" TextColor="{StaticResource Key=azul}"/>
+            <Label Grid.Row="1" x:Name="ServicioTipo" Grid.Column="0" LineBreakMode="TailTruncation"  FontSize="Micro" TextColor="Black"/>
+        </Grid>
+</ViewCell>
