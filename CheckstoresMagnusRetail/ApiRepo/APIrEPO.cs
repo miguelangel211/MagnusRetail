@@ -45,7 +45,7 @@ namespace CheckstoresMagnusRetail.ApiRepo
             string Errores = null;
             try
             {
-                builder = new UriBuilder(string.Concat("http://powerbinew.eastus.cloudapp.azure.com/magnusapi"));
+                builder = new UriBuilder(string.Concat(url));
                 builder.Port = -1;
                 string urlbuild = builder.ToString();
                 response = await client.GetAsync(urlbuild);
