@@ -21,6 +21,7 @@
           <viewmodels:InfiniteListView 
             Margin="5,0,5,0"
           x:Name="ListaMuebles"
+              BackgroundColor="White"
             ItemsSource="{Binding MueblesEnTienda}"
           HasUnevenRows="True"  
   RefreshCommand="{Binding CargarData}"

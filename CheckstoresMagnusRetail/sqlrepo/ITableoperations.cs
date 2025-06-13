@@ -21,8 +21,9 @@ namespace CheckstoresMagnusRetail.sqlrepo
         public SQLiteAsyncConnection db;
         public SQLiteConnection dbsincrona;
 
+        private readonly object Lock = new object();
 
-       public resultfromLocalDB<T> resultado;
+        public resultfromLocalDB<T> resultado;
 
       public  ITableoperations(){
             plataform = DependencyService.Get<ISQLitePlataform>();
@@ -45,8 +46,14 @@ namespace CheckstoresMagnusRetail.sqlrepo
         {
             try
             {
-               
-                await  db.InsertAsync(parameter);
+                lock (this.Lock)
+                {
+                     db.InsertAsync(parameter);
+                }
+                // dbsincrona.Insert(parameter);
+
+                // await  db.CloseAsync();
+
             }
             catch (Exception ex) {
                 Debug.WriteLine(ex.Message);
@@ -54,11 +61,29 @@ namespace CheckstoresMagnusRetail.sqlrepo
 
             }
         }
+        public virtual async Task ActualizarDatos(T parameter)
+        {
+            try
+            {
+
+               await db.UpdateAsync(parameter);
+             //  await db.UpdateAsync(parameter);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                await Reportarproceso("Error Guardado: " + ex.Message, true, JsonConvert.SerializeObject(parameter), "Actualizar  registro sql");
+
+            }
+        }
 
         public virtual async Task Insertbatch(List<T> parameter) {
             try {
-
-                await db.InsertAllAsync(parameter);
+                //  var guardardb = plataform.GetConnection();
+                lock (this.Lock)
+                {
+                     db.InsertAllAsync(parameter);
+                }
               }
             catch (Exception ex)
             {
@@ -74,12 +99,25 @@ namespace CheckstoresMagnusRetail.sqlrepo
         abstract public Task<resultfromLocalDB<List<T>>> consultarListadodedata(object parameter);
 
         public async Task insertdata(List<T> datos, ITableoperations<T> operations) {
-            await clearData();
-            List<Task> tareas = new List<Task>();
-            int count = 1;
+            try
+            {
+                await clearData();
+                await Task.Delay(100);
+                List<Task> tareas = new List<Task>();
+                int count = 1;
+              
+                  await   Insertbatch(datos);
+                
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            /*
             foreach (T objeto in datos)
             {
-
+                
+                
 
                 if (count == 25)
                 {
@@ -92,7 +130,8 @@ namespace CheckstoresMagnusRetail.sqlrepo
                     await Task.WhenAll(tareas);
                 count++;
                 
-            }
+            }*/
+
         }
 
     }

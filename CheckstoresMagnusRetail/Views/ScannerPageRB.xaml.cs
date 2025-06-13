@@ -4,9 +4,11 @@ using System.Threading.Tasks;
 using CheckstoresMagnusRetail.DataModels;
 using CheckstoresMagnusRetail.sqlrepo;
 using CheckstoresMagnusRetail.ViewModels;
+using GoogleVisionBarCodeScanner;
 //using Rb.Forms.Barcode.Pcl;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace CheckstoresMagnusRetail.Views
 {
@@ -27,20 +29,24 @@ namespace CheckstoresMagnusRetail.Views
             //  NavigationPage.SetHasBackButton(this, false);
             this.Title = "Escaner de productos";
 
+            GoogleVisionBarCodeScanner.Methods.SetSupportBarcodeFormat(BarcodeFormats.All);
+            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
+
             /**
              * So that we can release the camera when turning off phone or switching apps.
              */
             // MessagingCenter.Subscribe<App>(this, App.MessageOnSleep, disableScanner);
             // MessagingCenter.Subscribe<App>(this, App.MessageOnResume, enableScanner);
-          //  barcodeScanneri.BarcodeChanged += animateFlash;
+            //  barcodeScanneri.BarcodeChanged += animateFlash;
         }
 
 
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+            bool allowed = await GoogleVisionBarCodeScanner.Methods.AskForRequiredPermission();
 
-            await Task.Delay(200);
+            //  await Task.Delay(200);
             //barcodeScanneri.IsEnabled = true;
             //  context.Activo = true;
             // context.Decoder = true;

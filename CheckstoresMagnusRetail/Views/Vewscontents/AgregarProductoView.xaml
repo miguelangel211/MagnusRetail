@@ -3,12 +3,16 @@
     <ContentView.Content>
           <ScrollView>
               <StackLayout Margin="15,0,15,0">
-                             
-            <ui:MaterialButton Text="Datos de Producto" BorderColor="{StaticResource Key=azul}" TextColor="{StaticResource Key=azul }" Grid.Row="0"  Grid.ColumnSpan="2"
+                <StackLayout Orientation="Horizontal">
+                    <ui:MaterialButton Text="Datos Producto" BorderColor="{StaticResource Key=azul}" TextColor="{StaticResource Key=azul }" 
                                Command="{Binding VisualizarProductoDatos}" CornerRadius="10" BorderWidth="2"
                                 HorizontalOptions="StartAndExpand"  BackgroundColor="Transparent" PressedBackgroundColor="{StaticResource Key=mist}"/>
-                
-        <Grid Margin="0,0,0,0" IsVisible="{Binding SeccionProductoVisibilidad}" >
+
+                    <ui:MaterialButton Text="{Binding TextoBotonEditar}" BorderColor="{StaticResource Key=azul}" TextColor="{StaticResource Key=azul }" 
+                               Command="{Binding EditarProducto}" IsVisible="{Binding EditandoProductoPrexistente}" CornerRadius="10" BorderWidth="2" 
+                                HorizontalOptions="EndAndExpand"  BackgroundColor="Transparent" PressedBackgroundColor="{StaticResource Key=mist}"/>
+                </StackLayout>
+                <Grid Margin="0,0,0,0" IsVisible="{Binding SeccionProductoVisibilidad}" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="60"/>
@@ -23,41 +27,41 @@
                 <ColumnDefinition Width=".5*" />
             </Grid.ColumnDefinitions>
 
-         <ui:MaterialTextField x:Name="upc" IsVisible="{Binding SeccionProductoVisibilidad}"  Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding DatosForma.UPC}" InputTransparent="{Binding Modoforma}"
+                    <ui:MaterialTextField x:Name="upc" IsVisible="{Binding SeccionProductoVisibilidad}"  Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding DatosForma.UPC}" InputTransparent="{Binding Camposeditables}"
                                TextChangeCommand="{Binding BuscarProducto}" 
                                Placeholder="UPC"  BackgroundColor="White"   TintColor="{StaticResource Key=azul}"
                               />
-            
-         <ui:MaterialTextField IsVisible="{Binding SeccionProductoVisibilidad}" Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding DatosForma.Nombre}" InputTransparent="{Binding Modoforma}"
+
+                    <ui:MaterialTextField IsVisible="{Binding SeccionProductoVisibilidad}" Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding DatosForma.Nombre}" InputTransparent="{Binding Camposeditables}"
                                Placeholder="NOMBRE"  BackgroundColor="White"   TintColor="{StaticResource Key=azul}"
                               />
-            
-         <ui:MaterialTextField IsVisible="{Binding SeccionProductoVisibilidad}" Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding DatosForma.Marca}" InputTransparent="{Binding Modoforma}"
+
+                    <ui:MaterialTextField IsVisible="{Binding SeccionProductoVisibilidad}" Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding DatosForma.Marca}" InputTransparent="{Binding Camposeditables}"
                                Placeholder="MARCA"  BackgroundColor="White"   TintColor="{StaticResource Key=azul}"
                               />
-            
-         <ui:MaterialTextField IsVisible="{Binding SeccionProductoVisibilidad}" Grid.Row="3" Grid.ColumnSpan="2" Text="{Binding DatosForma.Fabricante}" InputTransparent="{Binding Modoforma}"
+
+                    <ui:MaterialTextField IsVisible="{Binding SeccionProductoVisibilidad}" Grid.Row="3" Grid.ColumnSpan="2" Text="{Binding DatosForma.Fabricante}" InputTransparent="{Binding Camposeditables}"
                                Placeholder="FABRICANTE"  BackgroundColor="White"   TintColor="{StaticResource Key=azul}"
                               />
-            
-         <ui:MaterialTextField IsVisible="{Binding SeccionProductoVisibilidad}" Grid.Row="4" Grid.Column="0" Text="{Binding DatosForma.Gramaje}" InputTransparent="{Binding Modoforma}"
+
+                    <ui:MaterialTextField IsVisible="{Binding SeccionProductoVisibilidad}" Grid.Row="4" Grid.Column="0" Text="{Binding DatosForma.Gramaje}" InputTransparent="{Binding Camposeditables}"
                                Placeholder="GRAMAJE"  BackgroundColor="White"   TintColor="{StaticResource Key=azul}"
                               />
-            
-         <ui:MaterialTextField IsVisible="{Binding SeccionProductoVisibilidad}" Grid.Row="4" Grid.Column="1" Text="{Binding DatosForma.Alto}" InputTransparent="{Binding Modoforma}"
+
+                    <ui:MaterialTextField IsVisible="{Binding SeccionProductoVisibilidad}" Grid.Row="4" Grid.Column="1" Text="{Binding DatosForma.Alto}" InputTransparent="{Binding Camposeditables}"
                                Placeholder="ALTO"  BackgroundColor="White" InputType="Numeric"    TintColor="{StaticResource Key=azul}"
                               />
-            
-         <ui:MaterialTextField IsVisible="{Binding SeccionProductoVisibilidad}"  Grid.Row="5" Grid.Column="0" Text="{Binding DatosForma.Ancho}" InputTransparent="{Binding Modoforma}"
+
+                    <ui:MaterialTextField IsVisible="{Binding SeccionProductoVisibilidad}"  Grid.Row="5" Grid.Column="0" Text="{Binding DatosForma.Ancho}" InputTransparent="{Binding Camposeditables}"
                                Placeholder="ANCHO"  BackgroundColor="White" InputType="Numeric"    TintColor="{StaticResource Key=azul}"
                               />
-            
-         <ui:MaterialTextField  Grid.Row="5" Grid.Column="1" Text="{Binding DatosForma.Profundo}" InputTransparent="{Binding Modoforma}"
+
+                    <ui:MaterialTextField  Grid.Row="5" Grid.Column="1" Text="{Binding DatosForma.Profundo}" InputTransparent="{Binding Camposeditables}"
                                Placeholder="PROFUNDO"  BackgroundColor="White" InputType="Numeric"   TintColor="{StaticResource Key=azul}"
                               />
 
             <inputLayout:SfTextInputLayout Hint="Categoria" Grid.Row="6"  Grid.Column="0" Grid.ColumnSpan="2"
-                                      InputTransparent="{Binding Modoforma}"
+                                      InputTransparent="{Binding Camposeditables}"
                                         HeightRequest="50"
                                                    EnableFloating="True"
                                                    ContainerBackgroundColor="White" ContainerType="Filled"
@@ -68,12 +72,12 @@
                                     TextColor="{StaticResource Key=azul}" 
                                                  SelectedValuePath="CategoriaID"
                                                  SelectedValue="{Binding DatosForma.CategoriaID,Mode=TwoWay}"
-                                                 SelectedItem="{Binding DatosForma.Categoria}"
+                                                     SelectedItem="{Binding DatosForma.Categoria,Mode=TwoWay}"
                                     DataSource="{Binding Categorias}">
                                 
                                    <combobox:SfComboBox.ItemTemplate>
                                        <DataTemplate>
-                                       <Label Text="{Binding CategoriaNombre}" />
+                                    <Label x:Name="Nombredelacategoria" Text="{Binding CategoriaNombre}" TextColor="Black"/>
                                            </DataTemplate>
                                        </combobox:SfComboBox.ItemTemplate>
 

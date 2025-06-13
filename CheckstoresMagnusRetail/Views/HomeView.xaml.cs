@@ -39,6 +39,7 @@ namespace CheckstoresMagnusRetail.Views
 
         async void servicioclickedAsync(object sender, System.EventArgs e)
         {
+            
             SQLitemethods db = new SQLitemethods();
              db.createdb();
              await viewmod.recargarDatos();

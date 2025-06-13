@@ -1,5 +1,36 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CheckstoresMagnusRetail.Views.Configuracionrutas">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material" x:Class="CheckstoresMagnusRetail.Views.Configuracionrutas"      BackgroundColor="{StaticResource Gris}"
+>
     <ContentPage.Content>
+        <StackLayout Margin="20,0,20,0" Spacing="5">
+
+            <Label Text="Configuracion Rutas" TextColor="{StaticResource azul}" FontAttributes="Bold" FontSize="Large" HorizontalOptions="CenterAndExpand" />
+            <StackLayout  HorizontalOptions="CenterAndExpand" >
+            <ui:MaterialTextField x:Name="rutaapi" 
+                                      Grid.Column="0" Text=""
+                                       
+                               Placeholder="URLAPI"  BackgroundColor="White"
+                                       TintColor="{StaticResource Key=azul}"
+
+                              />
+                <StackLayout Orientation="Horizontal">
+                <ActivityIndicator x:Name="probando" HorizontalOptions="CenterAndExpand" Color="{StaticResource azul}" />
+
+                    <Button Text="Probar" WidthRequest="50" CornerRadius="20" Clicked="Button_Clicked" BackgroundColor="{StaticResource azul}" TextColor="White" HorizontalOptions="EndAndExpand"/>
+                       </StackLayout>
+                </StackLayout>
+            <Button Text="Guardar api" Clicked="clickonchangerutaapi"/>
+
+                         <ui:MaterialTextField x:Name="rutabd"
+                                      Grid.Column="0" Text=""
+                               Placeholder="Base de datos"  BackgroundColor="White"
+                                       TintColor="{StaticResource Key=azul}"
+                              />
+
+                        <Button Clicked="clickonbdchange" Text="cambiar ruta BD" />
+                        <Button Text="Cerrar" BackgroundColor="{StaticResource azul}" HorizontalOptions="FillAndExpand" TextColor="White"  Clicked="cerrarclicked"/>
+
+        </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>

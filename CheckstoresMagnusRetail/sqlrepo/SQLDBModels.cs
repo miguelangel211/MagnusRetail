@@ -332,11 +332,14 @@ namespace CheckstoresMagnusRetail.sqlrepo
         public DateTime? SincronizadoFecha { get; set; }
     }
 
-    public class Categoria {
+    public class Categoria: BaseDBmodel
+    {
         [PrimaryKey,AutoIncrement,NotNull]
         public int? CategoriaLocalID { get; set; }
         public int? CategoriaID { get; set; }
-        public string CategoriaNombre { get; set; }
+        [Ignore]
+        public string categorinombre { get; set; }
+        public string CategoriaNombre { get { return categorinombre; } set { categorinombre = value; OnPropertyChanged(); } }
         public byte?[] CategoriaImagen { get; set; }
         public string CategoriaImagenRuta { get; set; }
         public bool Activo { get; set; }

@@ -2,12 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:magic="clr-namespace:MagicGradients;assembly=MagicGradients" xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
              x:Class="CheckstoresMagnusRetail.Views.PerfilPageView"
+             Style="{StaticResource SecondaryPage}"
              >
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height=".3*" />
-                <RowDefinition Height=".4*" />
+                <RowDefinition Height=".2*" />
+                <RowDefinition Height=".6*" />
                 <RowDefinition Height=".2*" />
                                 <RowDefinition Height=".1*" />
 
@@ -28,8 +29,8 @@
                                        CornerRadius="40" HeightRequest="80" WidthRequest="80"
                          ImageSource="perfil.png"></sfavatar:SfAvatarView>
                 <Label x:Name="NombreUsuario"  TextColor="Black" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center"/>
-                <Label x:Name="email" HorizontalOptions="Center" />
-                <Label x:Name="telefono" HorizontalOptions="Center"/>
+                <Label x:Name="email" TextColor="Black"  HorizontalOptions="Center" />
+                <Label x:Name="telefono" TextColor="Black"  HorizontalOptions="Center"/>
 <Button Grid.Row="2"  
                     CornerRadius="20" BackgroundColor="{StaticResource Key=Gris}"
                     Clicked="reiniciardb" WidthRequest="150"
@@ -44,7 +45,22 @@
                     Margin="0,0,0,0"
                     BorderColor="{StaticResource Key=azul}" BorderWidth="2" TextColor="{StaticResource Key=azul}"
         Text="Cargar Log de Errores" />
+                                <Button Grid.Row="4"   x:Name="botonbackupdb"
+                    CornerRadius="20" BackgroundColor="{StaticResource Key=Gris}"
+                    Clicked="CopyDatabase" WidthRequest="150"
+        HorizontalOptions="Center"
+                    Margin="0,0,0,0"
+                    BorderColor="{StaticResource Key=azul}" BorderWidth="2" TextColor="{StaticResource Key=azul}"
+        Text="backup BD" />
+                                                <Button Grid.Row="4"   x:Name="reiniciarfotosbutton"
+                    CornerRadius="20" BackgroundColor="{StaticResource Key=Gris}"
+                    Clicked="reiniciarfotos" WidthRequest="150"
+        HorizontalOptions="Center"
+                    Margin="0,0,0,0"
+                    BorderColor="{StaticResource Key=azul}" BorderWidth="2" TextColor="{StaticResource Key=azul}"
+        Text="recarga fotos" />
                 </StackLayout>
+
             <Button Grid.Row="2" VerticalOptions="EndAndExpand" 
                     CornerRadius="20" BackgroundColor="{StaticResource Key=Gris}"
                     FontAttributes="Bold"

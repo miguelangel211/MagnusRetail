@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Expander;assembly=Syncfusion.Expander.XForms" xmlns:views="clr-namespace:CheckstoresMagnusRetail.Views" x:Class="CheckstoresMagnusRetail.Views.TiendasListViewCell">
+    <ViewCell.View>
+        <StackLayout>
+           <syncfusion:SfExpander BackgroundColor="Transparent" HeaderIconPosition="None" IsExpanded="True"> 
+                            <syncfusion:SfExpander.Header> 
+                          
+                                    <views:Tiendaviewcell /> 
+                            </syncfusion:SfExpander.Header> 
+                            <syncfusion:SfExpander.Content> 
+                       <Label />
+                            </syncfusion:SfExpander.Content> 
+            </syncfusion:SfExpander> 
+        </StackLayout>
+    </ViewCell.View>
+</ViewCell>

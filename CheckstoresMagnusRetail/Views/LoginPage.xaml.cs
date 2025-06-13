@@ -56,7 +56,7 @@ namespace CheckstoresMagnusRetail.Views
                         iniciosesion = true;
                         
                         //await guardarensecurityAsync(resultado.Result);
-                        await Navigation.PushAsync(new TabbedPages());
+                        await App.Navigation.PushAsync(new TabbedPages());
                 /*
                     }
                     else

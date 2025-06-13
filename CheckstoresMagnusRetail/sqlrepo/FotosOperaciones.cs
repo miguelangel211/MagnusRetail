@@ -14,7 +14,6 @@ namespace CheckstoresMagnusRetail.sqlrepo
 
         public override async Task<resultfromLocalDB<ProductoImagen>> consultarDatoconcisoAsync(ProductoImagen parameter)
         {
-            // resultfromLocalDB<Usuario> resultado = new resultfromLocalDB<Usuario>() { realizado = true, Errores = "" };
             try
             {
                 resultado.Result = await db.Table<ProductoImagen>().FirstOrDefaultAsync(x => x.ProductoImagenID == parameter.ProductoImagenID);
@@ -52,12 +51,17 @@ namespace CheckstoresMagnusRetail.sqlrepo
             catch { }
         }
 
+        public async Task reiniciarfotos() {
+
+            await db.ExecuteAsync("update ProductoImagen set Sincronizado=0");
+        }
+
         public async Task CargarDatosdelayout()
         {
             var prueba = await probarred("Carga de fotos de Producto: ");
             if (prueba)
                 return;
-
+            int numeropruebas = 1;
             var m = await db.Table<ProductoImagen>().Where(x => (x.Sincronizado == false || x.Sincronizado == null)&&(x.ProductoID!=0 && x.ProductoID!=null)).ToListAsync();
             if (m.Count > 0)
             {
@@ -66,18 +70,24 @@ namespace CheckstoresMagnusRetail.sqlrepo
                 {
                    // i.DispositivoID = DispositivoID;
                    // i.DispositivoNombre = DispositivoName;
-                    await Reportarproceso("Cargando Foto del Producto local "+i.ProductoImagenLocalID);
+                    await Reportarproceso("Cargando Foto del Producto local  "+i.ProductoImagenLocalID + "intento numero: "+numeropruebas);
                     var r = await repoapi.CargaProductoImagenPOST(i);
                     if (r.realizado)
                     {
                         try
-                        {var resulta= r.LayoutFotosSync.FirstOrDefault().ProductoImagenID;
-                            await db.ExecuteAsync("update ProductoImagen set Sincronizado=1,ProductoImagenID=? where ProductoImagenLocalID=?", resulta,i.ProductoImagenLocalID);
-                            /*
-                            var tempm = await db.Table<ProductoImagen>().FirstOrDefaultAsync(x => x.ProductoImagenLocalID == i.ProductoImagenLocalID);
-                            tempm.ProductoImagenID = r.LayoutFotosSync.FirstOrDefault().ProductoImagenID;
-                            tempm.Sincronizado = true;
-                            await db.UpdateAsync(tempm);*/
+                        {
+
+                            var resulta= r.LayoutFotosSync.FirstOrDefault().ProductoImagenID;
+                            if (resulta == 0 || resulta == null)
+                            {
+                                await Reportarproceso("Error Recibido en carga de foto producto" + r.Errores, true,JsonConvert.SerializeObject(r) , "Carga de fotos de producto");
+
+                            }
+                            else
+                            {
+                                await db.ExecuteAsync("update ProductoImagen set Sincronizado=1,ProductoImagenID=? where ProductoImagenLocalID=?", resulta, i.ProductoImagenLocalID);
+                                await Reportarproceso("Foto de producto cargada" + r.Errores, true, JsonConvert.SerializeObject(r), "Carga de fotos de producto");
+                            }
                         }
                         catch(Exception ex) {
                             await Reportarproceso("Error en actualizacion de Foto de Producto local sincronizado "
@@ -86,7 +96,50 @@ namespace CheckstoresMagnusRetail.sqlrepo
                         }
                     }
                     else {
-                        await Reportarproceso("Error en carga de Foto de Producto local "+ r.Errores, true, i.ProductoImagenLocalID, "Carga de fotos de producto");
+                        await Reportarproceso("Error API  carga  Foto de Producto "+ r.Errores, true, i.ProductoImagenLocalID, "Carga de fotos de producto");
+
+                    }
+
+                    numeropruebas++;
+                }
+            }
+            else
+            {
+
+            }
+        }
+
+        public async Task CargarDatosdelayoutalternative()
+        {
+            var prueba = await probarred("Recarga de fotos  de Producto: ");
+            if (prueba)
+                return;
+
+            var m = await db.Table<ProductoImagen>().ToListAsync();
+            if (m.Count > 0)
+            {
+
+                foreach (var i in m)
+                {
+                    await Reportarproceso("Recargando Foto del Producto local " + i.ProductoImagenLocalID);
+                    var r = await repoapi.CargaProductoImagenPOSTalternative(i);
+                    if (r.realizado)
+                    {
+                        try
+                        {
+                            var resulta = r.LayoutFotosSync.FirstOrDefault().ProductoImagenID;
+
+                        }
+                        catch (Exception ex)
+                        {
+                            await Reportarproceso("Error en actualizacion de Foto de Producto local sincronizado "
+                                + ex.Message + ex.StackTrace, true, i.ProductoImagenLocalID, "Carga de fotos de producto");
+
+                        }
+                    }
+                    else
+                    {
+                        await Reportarproceso("Error en carga de Foto de Producto local " + r.Errores, true, i.ProductoImagenLocalID, "Carga de fotos de producto");
 
                     }
                 }
@@ -158,7 +211,7 @@ namespace CheckstoresMagnusRetail.sqlrepo
 
                         if (datos.Fotos.Count > 0)
                         {
-
+                            
                             foreach (var f in datos.Fotos)
                             {
 

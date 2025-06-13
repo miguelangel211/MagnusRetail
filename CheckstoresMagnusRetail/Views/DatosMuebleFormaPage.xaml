@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
+
+             xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material" xmlns:viewmodels="clr-namespace:CheckstoresMagnusRetail.ViewModels" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms" x:Class="CheckstoresMagnusRetail.Views.DatosMuebleFormaPage">
+    <ContentPage.Content>
+                <Grid >
+               <Grid.RowDefinitions>
+                   <RowDefinition Height="40"/>
+                   <RowDefinition Height="Auto"/>
+                                      <RowDefinition Height="Auto"/>
+                   <RowDefinition Height="Auto"/>
+                   <RowDefinition Height="Auto"/>
+
+               </Grid.RowDefinitions>
+               <Grid.ColumnDefinitions>
+                   <ColumnDefinition Width=".5*" />
+                   <ColumnDefinition Width=".5*" />
+               </Grid.ColumnDefinitions>
+
+            <BoxView Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="{StaticResource Key=azul}" />
+                               <buttons:SfButton Grid.Column="0" Clicked="Salir" Grid.Row="0" ImageSource="leftarrow.png"
+                                  ShowIcon="True"  BackgroundColor="Transparent"
+                                  WidthRequest="50" HeightRequest="30"
+                                 />
+                <Label Grid.Row="0" Grid.Column="1" VerticalOptions="Center" Text="Mueble 271"  FontSize="Large" TextColor="White" />
+                <buttons:SfButton Grid.Row="0" Grid.Column="1" Text=""
+                                  ShowIcon="True"   BackgroundColor="Transparent"
+                                  WidthRequest="50" HeightRequest="30"
+                                 />
+
+
+               
+         <ui:MaterialTextField Grid.Row="1" Grid.Column="0" IsTextPredictionEnabled="True"
+                               Placeholder="TIPO DE MUEBLE" FloatingPlaceholderEnabled="True"  BackgroundColor="White"   TintColor="{StaticResource Key=azul}"
+                              />
+         <ui:MaterialTextField Grid.Row="1" Grid.Column="1" Placeholder="ALTURA" 
+                               BackgroundColor="White" FloatingPlaceholderEnabled="True"
+                            
+                               TintColor="{StaticResource Key=azul}"
+                               />
+            <ui:MaterialTextField  Grid.Row="2" Grid.Column="0" 
+                Placeholder="TRAMOS" FloatingPlaceholderEnabled="True"  BackgroundColor="White"
+                                   TintColor="{StaticResource Key=azul}" />
+                    <inputLayout:SfTextInputLayout Hint="MEDIDAS IGUALE" Grid.Row="2" Grid.Column="1" 
+                                                   EnableFloating="True"
+                                                   BackgroundColor="White" ContainerType="Filled" FocusedColor="{StaticResource Key=azul}"
+                                                   >
+   <combobox:SfComboBox x:Name="medidasiguales" DisplayMemberPath="DisplayName" DataSource="{Binding Opciones}">
+       <combobox:SfComboBox.ItemTemplate>
+           <DataTemplate>
+           <Label Text="{Binding DisplayName}" />
+               </DataTemplate>
+           </combobox:SfComboBox.ItemTemplate>
+
+   </combobox:SfComboBox>
+</inputLayout:SfTextInputLayout>
+
+                    <!--
+                     <ui:MaterialTextField x:Name="Meidasiguales" Grid.Row="2" Grid.Column="1" 
+                Placeholder="MEDIDAS IGUALES" FloatingPlaceholderEnabled="True"  InputType="Choice" BackgroundColor="White"
+                                   TintColor="{StaticResource Key=azul}" />-->
+                                <ui:MaterialTextField Grid.Row="3" Grid.Column="0" 
+                Placeholder="NIVEL MINIMO" FloatingPlaceholderEnabled="True"  BackgroundColor="White"
+                                   TintColor="{StaticResource Key=azul}" />
+
+                     <ui:MaterialTextField Grid.Row="3" Grid.Column="1" 
+                Placeholder="NIVEL MAXIMO " FloatingPlaceholderEnabled="True"  BackgroundColor="White"
+                                   TintColor="{StaticResource Key=azul}" />
+                    <ui:MaterialCard Grid.Row="4" Grid.ColumnSpan="2" Margin="5,0,5,0">
+                        <StackLayout>
+                            <Label TextColor="{StaticResource Key=azul}" FontSize="Large" FontAttributes="Bold" Text="Tramo 2" HorizontalOptions="CenterAndExpand" />
+                            <ui:MaterialCard CornerRadius="20" BorderColor="{StaticResource Key=azul}">
+                                <StackLayout>
+                                 <Label TextColor="{StaticResource Key=azul}" FontSize="Medium"
+                                        FontAttributes="Bold" Text="NIVEL 1"  />
+                                    <StackLayout Orientation="Horizontal">
+                                        <Grid>
+                               <ui:MaterialTextField Grid.Column="0" Placeholder="Profundo" 
+                               BackgroundColor="White" FloatingPlaceholderEnabled="True"
+                            
+                               TintColor="{StaticResource Key=azul}"
+                               />
+                                                              <ui:MaterialTextField Grid.Column="1" Placeholder="Ancho" 
+                               BackgroundColor="White" FloatingPlaceholderEnabled="True"
+                            
+                               TintColor="{StaticResource Key=azul}"
+                               />
+                                                              <ui:MaterialTextField Grid.Column="2" Placeholder="Alto Charola" 
+                               BackgroundColor="White" FloatingPlaceholderEnabled="True"
+                            
+                               TintColor="{StaticResource Key=azul}"
+                               />
+                                            </Grid>
+                                    </StackLayout>
+                                </StackLayout>
+                            </ui:MaterialCard>
+                        </StackLayout>
+                    </ui:MaterialCard>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

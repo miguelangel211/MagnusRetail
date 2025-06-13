@@ -76,8 +76,9 @@ namespace CheckstoresMagnusRetail.sqlrepo
             {
                 foreach (var i in m)
                 {
-                //    i.DispositivoID = DispositivoID;
-                  //  i.DispositivoNombre = DispositivoName;
+                    i.DispositivoID = DispositivoID;
+                    i.DispositivoNombre = DispositivoName;
+                    i.UsuarioLocalID = UsuarioID;
                     await Reportarproceso("Carga de producto local " + i.ProductoLocalID);
 
                     var r = await repoapi.CargaProductoPOST(i);
@@ -213,9 +214,17 @@ namespace CheckstoresMagnusRetail.sqlrepo
                 if (datos.realizado)
                 {
                     if (datos.Productos.Count>0) {
-                        await clearData();
+                        //await clearData();
+                       await db.ExecuteAsync("Delete from Producto where (Sincronizado = 1 and ProductoID=0) or (Sincronizado = 1 and ProductoID is null)");
 
-                        await insertdata(datos.Productos, this);
+                        foreach (var producto in datos.Productos) {
+                            var productopreexiste =await db.Table<Producto>().FirstOrDefaultAsync(x=>x.ProductoID==producto.ProductoID && x.ProductoID!=null && x.ProductoID!=0);
+                            if (productopreexiste == null)
+                            {
+                                await base.insertarregistro(producto);
+                            }
+                        }
+                        // await insertdata(datos.Productos, this);
                     }
                 }
                 else

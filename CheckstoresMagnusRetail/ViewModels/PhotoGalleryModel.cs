@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using CheckstoresMagnusRetail.sqlrepo;
 using CheckstoresMagnusRetail.Views;
+using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Xamarin.Forms;
 
@@ -117,6 +118,11 @@ namespace CheckstoresMagnusRetail.ViewModels
                 return;
             IsBusy = true;
             MediaFile photo;
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+               Debug.WriteLine ("No Camera", ":( No camera available.", "OK");
+                return;
+            }
             if (tgaleriatype == 3)
             {
                 photo = await Plugin.Media.CrossMedia.Current.
@@ -175,7 +181,10 @@ namespace CheckstoresMagnusRetail.ViewModels
                             IDImagen = foto.ServicioLayoutLocalID ?? 0;
                             break;
                         case 3:
-                            var imagen = new ProductoImagen { ProductoImagen1 = FotoActual, ProductoID = (origentype as Producto).ProductoID, ProductoLocalID = (origentype as Producto).ProductoLocalID, FechaHoraLocal = DateTime.Now, ProductImageRuta = filename };
+                            var imagen = new ProductoImagen {
+                                ProductoImagen1 = FotoActual, ProductoID = (origentype as Producto).ProductoID,
+                                ProductoLocalID = (origentype as Producto).ProductoLocalID,
+                                FechaHoraLocal = DateTime.Now, ProductImageRuta = filename };
                             await (FOTOOP as FotoProductoOperaciones).insertarregistro(imagen);
                             IDImagen = imagen.ProductoImagenLocalID ?? 0;
                             break;

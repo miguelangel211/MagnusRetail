@@ -85,11 +85,12 @@ namespace CheckstoresMagnusRetail.sqlrepo
                                 (x.ServicioMuebleTramoLocalID == Parametro.ServicioMuebleTramoLocalID  && Parametro.ServicioMuebleTramoLocalID != 0) 
 
                 );
-                  var n =  dbsincrona.Table<ServicioMuebleTramoNivelCategoria>().
-                    Where(x=>(x.ServicioMuebleTramoNivelID == tramonivel.ServicioMuebleTramoNivelID && tramonivel.ServicioMuebleTramoNivelID != 0)||
-                    (x.ServicioMuebleTramoNivelLocalID == tramonivel.ServicioMuebleTramoNivelLocalID && tramonivel.ServicioMuebleTramoNivelLocalID != 0)
-                    ).Select(k => k.CategoriaID).ToList();
-               
+                var tempcategorias = await db.Table<ServicioMuebleTramoNivelCategoria>().
+                  Where(x => (x.ServicioMuebleTramoNivelID == tramonivel.ServicioMuebleTramoNivelID && tramonivel.ServicioMuebleTramoNivelID != 0) ||
+                  (x.ServicioMuebleTramoNivelLocalID == tramonivel.ServicioMuebleTramoNivelLocalID && tramonivel.ServicioMuebleTramoNivelLocalID != 0)
+                  ).ToListAsync();
+               var n= tempcategorias.Select(k => k.CategoriaID).ToList();
+
                 //  var m = dbsincrona.Table<resultfromAPIMuebleTramosNivelCategoria>().ToList();
                 var m = await db.Table<Categoria>().Where(x=>n.Contains(x.CategoriaID)).OrderBy(x=>x.CategoriaNombre).ToListAsync();
                 if (m.Count > 0)
@@ -131,7 +132,7 @@ namespace CheckstoresMagnusRetail.sqlrepo
         {
             try
             {
-                 dbsincrona.Execute("Delete from Categoria");
+                await db.ExecuteAsync("Delete from Categoria");
             }
             catch (Exception ex) {
                 Debug.WriteLine(ex.Message);

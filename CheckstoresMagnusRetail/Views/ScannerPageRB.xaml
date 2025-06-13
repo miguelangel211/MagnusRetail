@@ -4,12 +4,12 @@
              xmlns:viewModels="clr-namespace:CheckstoresMagnusRetail.ViewModels" x:Class="CheckstoresMagnusRetail.Views.ScannerPageRB">
 
 
-    <RelativeLayout>
+    <RelativeLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="White">
 
 
                      <gv:CameraView x:Name="escanerrb" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
                                     OnDetected="CameraView_OnDetected"  
-                            DefaultTorchOn="False" VibrationOnDetected="True" AutoStartScanning="True"/>
+                            DefaultTorchOn="False" VibrationOnDetected="True" AutoStartScanning="True" RequestedFPS="30" />
                         <StackLayout 
             RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Factor=0}"
             Padding="20"

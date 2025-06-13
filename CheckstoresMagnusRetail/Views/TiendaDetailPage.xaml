@@ -3,15 +3,21 @@
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
     xmlns:viewmodels="clr-namespace:CheckstoresMagnusRetail.ViewModels" xmlns:views="clr-namespace:CheckstoresMagnusRetail.Views" xmlns:viewcells="clr-namespace:CheckstoresMagnusRetail.Views.ViewCells" x:Class="CheckstoresMagnusRetail.Views.TiendaDetailPage"
-   
+   NavigationPage.IconColor="White"
+             Title="Agregar Producto"
+                          BackgroundColor="{StaticResource Gris}"
+
              >
 
-        <ContentPage.ToolbarItems>
+    <ContentPage.ToolbarItems>
     <ToolbarItem 
                  IconImageSource="plus.png"
-                 Order="Primary"
+        Order="Primary"
+                 Priority="0"
+               
+        
         Clicked="CrearNuevoMueble"
-                 Priority="0" />
+                />
 </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ActivityIndicator IsRunning="True" Color="{StaticResource Key=azul}"/>

@@ -41,22 +41,30 @@ namespace CheckstoresMagnusRetail.Views.Vewscontents
             (this.BindingContext as TiendaModel).Expanded = false;
         }
         public async void Concluirservicioclick(object sender, EventArgs args){
+            try
+            {
+                (this.BindingContext as TiendaViewModel).Eliminando = true;
 
-            (this.BindingContext as TiendaViewModel).Eliminando = true;
-           
-                            bool? respuesta = await MaterialDialog.Instance.ConfirmAsync(message: "concluir este servicio",
-                                     title: "Confirmar",
-                                     confirmingText: "SI",
-                                     dismissiveText: "NO", segundocolor);
-                if (respuesta ?? false) {
-               
+                bool? respuesta = await MaterialDialog.Instance.ConfirmAsync(message: "concluir este servicio",
+                         title: "Confirmar",
+                         confirmingText: "SI",
+                         dismissiveText: "NO", segundocolor);
+                if (respuesta ?? false)
+                {
 
-                var servicio = (this.BindingContext as TiendaViewModel).servicioactual;
-                await serepo.ConcluirServicio(servicio);
-                this.concluirbutton.Text = "Servicio concluido";
-                this.concluirbutton.IsEnabled = false;
+
+                    var servicio = (this.BindingContext as TiendaViewModel).servicioactual;
+                    await serepo.ConcluirServicio(servicio);
+                   //this.concluirbutton.Text = "Servicio concluido";
+                    this.concluirbutton.IsEnabled = false;
+                    (this.BindingContext as TiendaViewModel).Eliminando = false;
+
+                }
             }
-                            (this.BindingContext as TiendaViewModel).Eliminando = false;
+            catch(Exception ex) 
+            {
+            
+            }
 
         }
     }

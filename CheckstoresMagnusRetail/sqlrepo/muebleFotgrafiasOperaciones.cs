@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using CheckstoresMagnusRetail.ApiRepo;
 using Newtonsoft.Json;
@@ -148,6 +149,8 @@ namespace CheckstoresMagnusRetail.sqlrepo
 
         public override async Task SincronizaciondesdeAPI()
         {
+            var webClient = new WebClient();
+
             var prueba = await probarred("Descarga de fotos de mueble: ");
             if (prueba)
                 return;
@@ -162,8 +165,25 @@ namespace CheckstoresMagnusRetail.sqlrepo
                     if (datos.MUebleImagen.Count > 0)
                     {
                        await clearData();
+                        foreach (var f in datos.MUebleImagen)
+                        {
+                            try
+                            {
 
-                        await insertdata(datos.MUebleImagen, this);
+
+                                f.MuebleImagen = await webClient.DownloadDataTaskAsync(f.URLFoto);
+                                f.Sincronizado = true;
+                                await insertarregistro(f);
+                                // await insertdata(datos.LayoutImagen, this);
+
+                            }
+                            catch (Exception ex)
+                            {
+                                await Reportarproceso("Error al descargar foto mueble " + ex.Message, false, JsonConvert.SerializeObject(f), "Descarga de imagen de producto");
+                                Debug.WriteLine(ex.Message);
+                            }
+                        }
+                       // await insertdata(datos.MUebleImagen, this);
                     }
                 }
                 else

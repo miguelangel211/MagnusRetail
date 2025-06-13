@@ -3,7 +3,10 @@
              xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
              xmlns:viewmodels="clr-namespace:CheckstoresMagnusRetail.ViewModels"
              xmlns:viewcells="clr-namespace:CheckstoresMagnusRetail.Views.ViewCells"
-             x:Class="CheckstoresMagnusRetail.Views.DetalleDeconteoPage">
+             x:Class="CheckstoresMagnusRetail.Views.DetalleDeconteoPage"
+                            BackgroundColor="{StaticResource Gris}"
+
+             >
              <ContentPage.ToolbarItems>
 
     <ToolbarItem 
@@ -34,9 +37,11 @@
             </ui:MaterialCard>
                 <viewmodels:InfiniteListView
                     x:Name="ListProductos"
+                    BackgroundColor="White"
                     ItemsSource="{Binding Prodcutos}"
                     RefreshCommand="{Binding CargarData}"
                     IsRefreshing="{Binding IsBusy,Mode=OneWay}"
+ 
                     VerticalOptions="Start"
                     IsPullToRefreshEnabled="True"
                     HasUnevenRows="True"

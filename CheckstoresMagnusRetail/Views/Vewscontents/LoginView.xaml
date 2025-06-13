@@ -35,7 +35,7 @@
            Source="usericon.png">     
        </material:MaterialIcon>
     </inputLayout:SfTextInputLayout.LeadingView>
-<Entry x:Name="usuario" Text="{Binding Usuario}"/>
+<Entry x:Name="usuario" Text="{Binding Usuario}" TextColor="Black"/>
         </inputLayout:SfTextInputLayout>
 
 
@@ -44,10 +44,11 @@
             LeadingViewPosition="Inside"
             Hint="Contraseña"
             ContainerType="Filled"
-            FocusedColor="{StaticResource Key=disabledtext}"
+            FocusedColor="{StaticResource Key=azul}"
             ContainerBackgroundColor="{StaticResource Key=blanco}"
            ErrorText="ingrese la Contraseña"
             ErrorColor="Red"
+            
             HasError="{Binding Errorpassword}"
             >
 
@@ -58,7 +59,7 @@
        </material:MaterialIcon>
     </inputLayout:SfTextInputLayout.LeadingView>
               <syncfusion:SfMaskedEdit
-                  x:Name="maskedEdit" Mask="\w+" Value="{Binding Password}"
+                  x:Name="maskedEdit" Mask="\w+" Value="{Binding Password}" TextColor="Black" WatermarkColor="{StaticResource azul}"
                   MaskType="RegEx" PasswordChar="*" EnablePasswordDelay="True"   />
 
 
@@ -66,9 +67,9 @@
 
 
       </StackLayout>
-    <Button Clicked="login_clickAsync" Grid.Row="2" Grid.ColumnSpan="3" Text="Ingresar" VerticalOptions="Center"
+    <Button Clicked="login_clickAsync" Grid.Row="2" Grid.ColumnSpan="3" Text="Ingresar" VerticalOptions="Center" 
         Style="{StaticResource Key=buttonlogin}"/>
-
+            <ImageButton Source="gear.png" Grid.Row="1" HeightRequest="40" Grid.ColumnSpan="3" BackgroundColor="Transparent" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand"  Clicked="abriropciones"/>
 </Grid>
     </ContentView.Content>
 </ContentView>

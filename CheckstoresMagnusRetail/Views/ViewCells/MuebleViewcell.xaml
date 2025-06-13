@@ -2,9 +2,9 @@
 <ViewCell xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
           x:Class="CheckstoresMagnusRetail.Views.ViewCells.MuebleViewcell">
     <ViewCell.View>
-        <StackLayout Orientation="Horizontal">
+        <StackLayout  BackgroundColor="{StaticResource Gris}" Orientation="Horizontal">
             <buttons:SfButton x:Name="MuebleName"
-                              BackgroundColor="Transparent"
+                              BackgroundColor="{StaticResource Gris}"
                                  HorizontalTextAlignment="Start"
                               HorizontalOptions="StartAndExpand"
                               Clicked="abrirmueble"

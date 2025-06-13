@@ -58,7 +58,7 @@
                                 
                                    <combobox:SfComboBox.ItemTemplate>
                                        <DataTemplate>
-                                       <Label Text="{Binding .}" />
+                                       <Label Text="{Binding .}" TextColor="Black" />
                                            </DataTemplate>
                                        </combobox:SfComboBox.ItemTemplate>
 
@@ -76,9 +76,9 @@
 </Grid>
           <ui:MaterialCard Grid.Row="1" Grid.ColumnSpan="2">
               <StackLayout>
-                  <Label Text="Categorias" FontSize="Medium" />
+                  <Label Text="Categorias" FontSize="Medium" TextColor="{StaticResource azul}" FontAttributes="Bold" />
                 <viewmodels:InfiniteListView
-                    x:Name="ListProducto" HeightRequest="200"
+                    x:Name="ListProducto" HeightRequest="200" BackgroundColor="White"
                     VerticalOptions="Start"
                     HasUnevenRows="True"
                     ItemsSource="{Binding Categorias}"
@@ -93,7 +93,7 @@
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal">
                                 <CheckBox IsChecked="{Binding Activo}" IsEnabled="{Binding Editable}" Color="{StaticResource Key=azul}" />
-                                <Label Text="{Binding CategoriaNombre}" />
+                                <Label Text="{Binding CategoriaNombre}" TextColor="Black" />
                                   </StackLayout>
                                 </ViewCell>
                         </DataTemplate>
@@ -116,7 +116,7 @@
                                 
                                    <combobox:SfComboBox.ItemTemplate>
                                        <DataTemplate>
-                                       <Label Text="{Binding Descripcion}" />
+                                       <Label Text="{Binding Descripcion}" TextColor="Black" />
                                            </DataTemplate>
                                        </combobox:SfComboBox.ItemTemplate>
 
@@ -148,7 +148,7 @@
                                             ValueChanged="medidacamnbio"     >
                                    <combobox:SfComboBox.ItemTemplate>
                                        <DataTemplate>
-                                       <Label Text="{Binding DisplayName}" />
+                                       <Label Text="{Binding DisplayName}" TextColor="Black"/>
                                            </DataTemplate>
                                        </combobox:SfComboBox.ItemTemplate>
 

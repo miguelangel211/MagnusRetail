@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using CheckstoresMagnusRetail.ApiRepo;
 using Newtonsoft.Json;
@@ -134,13 +135,15 @@ namespace CheckstoresMagnusRetail.sqlrepo
 
         public override async Task SincronizaciondesdeAPI()
         {
+            var webClient = new WebClient();
+
             var prueba = await probarred("Descarga de fotos layout: x");
             if (prueba)
                 return;
             try
             {
                 // SincronizacionData = true;
-                await Reportarproceso("Descargar Fotos de Layout" );
+                await Reportarproceso("Descargar Fotos de Layout");
 
                 resultfromAPIFotoLayout datos = await repoapi.DescargaLayoutImagen();
                 if (datos.realizado)
@@ -149,16 +152,34 @@ namespace CheckstoresMagnusRetail.sqlrepo
 
                     if (datos.LayoutImagen.Count > 0)
                     {
-                        await insertdata(datos.LayoutImagen, this);
+                        foreach (var f in datos.LayoutImagen)
+                        {
+                                try
+                                {
+
+
+                                    f.LayoutImagen = await webClient.DownloadDataTaskAsync(f.URLFoto);
+                                    f.Sincronizado = true;
+                                    await insertarregistro(f);
+                                    // await insertdata(datos.LayoutImagen, this);
+
+                                }
+                                catch (Exception ex)
+                                {
+                                    await Reportarproceso("Error al descargar layout " + ex.Message, false, JsonConvert.SerializeObject(f), "Descarga de imagen de producto");
+                                    Debug.WriteLine(ex.Message);
+                                }
+                        }
+                    }
+                    else
+                    {
+                        await Reportarproceso("Error al descargar Fotos de Layout " + datos.Errores,
+                            true, "", "Descarga fotos de layout");
                     }
                 }
-                else
-                {
-                    await Reportarproceso("Error al descargar Fotos de Layout " + datos.Errores,
-                        true, "", "Descarga fotos de layout");
-                }
-                //  SincronizacionData = false;
             }
+            //  SincronizacionData = false;
+
             catch (Exception ex)
             {
                 await Reportarproceso("Error al descargar Fotos de Layout " + ex.Message + ex.StackTrace,
@@ -178,7 +199,12 @@ namespace CheckstoresMagnusRetail.sqlrepo
             try
             {
                 //  resultfromLocalDB<Usuario> resultado = new resultfromLocalDB<Usuario>() { realizado = true, Errores = "" };
-                var m =  dbsincrona.Table<ServicioLayout>().ToList().Where(x=>x.ServicioID== (parameter as Servicio).ServicioID).ToList();
+             //   var m = await  db.Table<ServicioLayout>().Where(x=>x.ServicioID== (parameter as Servicio).ServicioID).ToListAsync();
+
+                var m = await db.QueryAsync<ServicioLayout>("Select * from ServicioLayout where ServicioID = " + (parameter as Servicio).ServicioID);
+
+                //  var m = await db.QueryAsync<ProductoImagen>("select * from ProductoImagen" +
+
 
                 if (m.Count > 0)
                 {

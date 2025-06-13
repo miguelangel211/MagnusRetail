@@ -27,8 +27,11 @@ namespace CheckstoresMagnusRetail.sqlrepo
         {
             var datos = await SecureStorage.GetAsync("User");
             var usuari = JsonConvert.DeserializeObject<Usuario>(datos);
-            UsuarioID = usuari.UsuarioID;
-            usuarioname = usuari.NombreUsuario;
+            if (usuari != null)
+            {
+                UsuarioID = usuari.UsuarioID;
+                usuarioname = usuari.NombreUsuario;
+            }
         }
         public async Task Reportarproceso(string texto,bool error=false,object parametros=null,string flujo="",string stacktrace="",
             [CallerMemberName] string evento="")

@@ -4,12 +4,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:CheckstoresMagnusRetail.ViewModels"
              xmlns:views="clr-namespace:CheckstoresMagnusRetail.Views"
              xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
-    x:Class="CheckstoresMagnusRetail.Views.HomeView"
+    x:Class="CheckstoresMagnusRetail.Views.HomeView"               BackgroundColor="{StaticResource Gris}"
+
              >
     <ContentPage.ToolbarItems>
     <ToolbarItem 
                  IconImageSource="{Binding ImagenSincro}"
                  Order="Primary"
+        IsEnabled="{Binding Issincronizando}"
+        
         Clicked="servicioclickedAsync"
                  Priority="0" />
 </ContentPage.ToolbarItems>
@@ -26,9 +29,9 @@
 
             <ui:MaterialCard CornerRadius="20" Elevation="2" IsClickable="False">
                <StackLayout Orientation="Horizontal">
-                   <Label Text="Programa" FontAttributes="Bold" TextColor="Black" FontSize="Medium" />
+                        <Label Text="Programa"  FontAttributes="Bold" TextColor="Black" FontSize="Medium" />
                    <StackLayout HorizontalOptions="CenterAndExpand">
-                       <Label Text="{Binding FechaTexto}" FontSize="Small" HorizontalOptions="Center"/>
+                            <Label Text="{Binding FechaTexto}" TextColor="Black" FontSize="Small" HorizontalOptions="Center"/>
                        <Label Text="{Binding NumeroPendientes,StringFormat='Pendientes {0}'}"  HorizontalOptions="Center"  TextColor="#336B87" />
 
                    </StackLayout>
@@ -42,6 +45,7 @@
                               ItemsSource="{Binding Tiendas}"
                               VerticalOptions="FillAndExpand"
                               HasUnevenRows="True"
+                                                       BackgroundColor="{StaticResource blanco}"
                               IsPullToRefreshEnabled="True"
                               IsGroupingEnabled="True"
                               RefreshCommand="{Binding CargarData}"

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)xamarin.forms\4.7.0.968\buildTransitive\Xamarin.Forms.targets" Condition="Exists('$(NuGetPackageRoot)xamarin.forms\4.7.0.968\buildTransitive\Xamarin.Forms.targets')" />
+    <Import Project="$(NuGetPackageRoot)xamarin.build.download\0.10.0\buildTransitive\Xamarin.Build.Download.targets" Condition="Exists('$(NuGetPackageRoot)xamarin.build.download\0.10.0\buildTransitive\Xamarin.Build.Download.targets')" />
+    <Import Project="$(NuGetPackageRoot)xamarin.firebase.ios.core\6.6.6\buildTransitive\Xamarin.Firebase.iOS.Core.targets" Condition="Exists('$(NuGetPackageRoot)xamarin.firebase.ios.core\6.6.6\buildTransitive\Xamarin.Firebase.iOS.Core.targets')" />
+    <Import Project="$(NuGetPackageRoot)xamarin.firebase.ios.mlkit.common\0.19.0\buildTransitive\Xamarin.Firebase.iOS.MLKit.Common.targets" Condition="Exists('$(NuGetPackageRoot)xamarin.firebase.ios.mlkit.common\0.19.0\buildTransitive\Xamarin.Firebase.iOS.MLKit.Common.targets')" />
+    <Import Project="$(NuGetPackageRoot)xamarin.firebase.ios.mlkit.vision\0.19.0\buildTransitive\Xamarin.Firebase.iOS.MLKit.Vision.targets" Condition="Exists('$(NuGetPackageRoot)xamarin.firebase.ios.mlkit.vision\0.19.0\buildTransitive\Xamarin.Firebase.iOS.MLKit.Vision.targets')" />
+    <Import Project="$(NuGetPackageRoot)xamarin.firebase.ios.mlkit.naturallanguage\0.17.0\buildTransitive\Xamarin.Firebase.iOS.MLKit.NaturalLanguage.targets" Condition="Exists('$(NuGetPackageRoot)xamarin.firebase.ios.mlkit.naturallanguage\0.17.0\buildTransitive\Xamarin.Firebase.iOS.MLKit.NaturalLanguage.targets')" />
+    <Import Project="$(NuGetPackageRoot)xamarin.firebase.ios.mlkit.modelinterpreter\0.19.0\buildTransitive\Xamarin.Firebase.iOS.MLKit.ModelInterpreter.targets" Condition="Exists('$(NuGetPackageRoot)xamarin.firebase.ios.mlkit.modelinterpreter\0.19.0\buildTransitive\Xamarin.Firebase.iOS.MLKit.ModelInterpreter.targets')" />
+  </ImportGroup>
+</Project>

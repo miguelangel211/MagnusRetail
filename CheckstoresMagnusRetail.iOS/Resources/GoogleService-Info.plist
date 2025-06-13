@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>1031240202946-43apqc3qutkut31lfgpf283l63q5d8o1.apps.googleusercontent.com</string>
+	<string>1031240202946-e5lng1gapbuh72d2emdk3nlq7rbfhda1.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1031240202946-43apqc3qutkut31lfgpf283l63q5d8o1</string>
+	<string>com.googleusercontent.apps.1031240202946-e5lng1gapbuh72d2emdk3nlq7rbfhda1</string>
 	<key>API_KEY</key>
 	<string>AIzaSyARVVIvN2qE0vs4l2Eo0hnFFws1DfBemc8</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.datarial.CheckstoresMagnusRetail</string>
+	<string>com.datarial.checkstores</string>
 	<key>PROJECT_ID</key>
 	<string>xenon-muse-149010</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1031240202946:ios:e67f26108b97a41cbf995b</string>
+	<string>1:1031240202946:ios:9c155f596c0db154bf995b</string>
 	<key>DATABASE_URL</key>
 	<string>https://xenon-muse-149010.firebaseio.com</string>
 </dict>

@@ -169,8 +169,9 @@ namespace CheckstoresMagnusRetail.sqlrepo
            
         }
         public async Task ConcluirServicio(Servicio servicio) {
+          //  await db.ExecuteAsync("update Servicio set ServicioEstatusID=3 and Sincronizado=0 where ServicioID = "+ servicio.ServicioID);
             var temps=await db.Table<Servicio>().FirstOrDefaultAsync(x=>x.ServicioID == servicio.ServicioID);
-            temps.ServicioEstatusID = 3;
+      temps.ServicioEstatusID = 3;
             temps.Sincronizado = false;
             await db.UpdateAsync(temps);
         }

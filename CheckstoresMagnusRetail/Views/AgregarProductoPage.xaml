@@ -4,7 +4,9 @@
              xmlns:xforms="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:viewcells="clr-namespace:CheckstoresMagnusRetail.Views.ViewCells"
              x:Class="CheckstoresMagnusRetail.Views.AgregarProductoPage"
-            NavigationPage.HasBackButton="False"
+            NavigationPage.HasBackButton="False"               BackgroundColor="{StaticResource Gris}"
+
+            
              >
         <ContentPage.ToolbarItems>
 

@@ -6,6 +6,7 @@ using SQLite;
 using Mono.Data.Sqlite;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 [assembly: Xamarin.Forms.Dependency(typeof(AndroidSQLitePlataform))]
 namespace CheckstoresMagnusRetail.Droid
@@ -60,17 +61,19 @@ namespace CheckstoresMagnusRetail.Droid
             return new SQLiteConnection(GetPath(),SQLiteOpenFlags.ReadWrite);
         }
 
-         string GetPath() {
+        public string GetPath() {
             string dbName = "Checkstorev2.db3";
-            string path = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal),dbName);
+            string path="";
+          var ruta= Task.Run(async () => {
+              path=await SecureStorage.GetAsync("rutadb");
+              }
+            );
+            Task.WaitAll(ruta);
+            if (path == "" || path == null)
+                path = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal),dbName);
             return path;
         }
 
-        string ISQLitePlataform.GetPath()
-        {
-            string dbName = "Checkstorev2.db3";
-            string path = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), dbName);
-            return path;
-        }
+
     }
 }

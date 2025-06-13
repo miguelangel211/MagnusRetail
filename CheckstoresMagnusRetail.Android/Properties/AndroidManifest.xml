@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="3" android:versionName="1.1332" package="Datarial.checkstoresmagnusretail">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="3" android:versionName="1.13394" package="Datarial.checkstoresmagnusretail" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="29" />
-	<application android:allowBackup="false" android:label="CheckstoresMagnusRetail" android:usesCleartextTraffic="true" android:icon="@drawable/iconoapp">
+	<application android:allowBackup="false" android:requestLegacyExternalStorage="true" android:label="CheckstoresMagnusRetail" android:usesCleartextTraffic="true" android:icon="@drawable/iconoapp">
 		<provider android:name="android.support.v4.content.FileProvider" android:authorities="${applicationId}.fileprovider" android:exported="false" android:grantUriPermissions="true">
 			<meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"></meta-data>
 			<meta-data android:name="com.google.android.gms.vision.DEPENDENCIES" android:value="barcode" />
@@ -11,4 +11,6 @@
 	<uses-permission android:name="android.permission.CAMERA" />
 	<uses-permission android:name="android.permission.FLASHLIGHT" />
 	<uses-permission android:name="android.permission.VIBRATE" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 </manifest>

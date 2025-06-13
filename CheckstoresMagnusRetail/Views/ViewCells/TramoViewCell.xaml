@@ -5,8 +5,8 @@
     <ViewCell.View>
         <Frame  CornerRadius="5" BackgroundColor="{StaticResource Key=blanco}" BorderColor="{StaticResource Key=Gris}">
             <StackLayout>
-            <Label  x:Name="TramoName" FontSize="Small" FontAttributes="Bold"/>
-            <Label x:Name="Descripcion" FontSize="Micro" Text="Captura de informacion de tramos en mueble"/>
+            <Label  x:Name="TramoName" FontSize="Small" TextColor="Black" FontAttributes="Bold"/>
+            <Label x:Name="Descripcion" FontSize="Micro" TextColor="Black" Text="Captura de informacion de tramos en mueble"/>
                 <sync:SfListView
                     x:Name="ListProducto"
                     VerticalOptions="Start"
@@ -19,9 +19,9 @@
                         <DataTemplate>
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal">
-                                    <Label Text="&#9711;" />
-                                <Label Text="{Binding CategoriaNombre}" />
-                                    <Label Text="&#x27A4;" HorizontalOptions="EndAndExpand" />
+                                    <Label Text="&#9711;" TextColor="Black" />
+                                <Label Text="{Binding CategoriaNombre}" TextColor="Black" />
+                                    <Label Text="&#x27A4;" TextColor="Black" HorizontalOptions="EndAndExpand" />
                                   </StackLayout>
                             </ViewCell>
                         </DataTemplate>

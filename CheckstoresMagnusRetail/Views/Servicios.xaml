@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:CheckstoresMagnusRetail.ViewModels" xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" x:Class="CheckstoresMagnusRetail.Views.Servicios">
+
+
+        <StackLayout BackgroundColor="White">
+         <buttons:SfButton BackgroundColor="Transparent"
+                           Clicked="servicioclickedAsync" Text="	&#9679; Servicio 1"
+                           HorizontalTextAlignment="Start" TextColor="Black" FontSize="Micro"/>                                                                                                  
+        </StackLayout>
+</ViewCell>

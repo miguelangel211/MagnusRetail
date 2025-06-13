@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using CheckstoresMagnusRetail.ApiRepo;
 using CheckstoresMagnusRetail.sqlrepo;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using XF.Material.Forms.UI.Dialogs;
 
@@ -57,6 +58,9 @@ namespace CheckstoresMagnusRetail.ViewModels
         public Command cargardata;
        
         public Command CargarData { get { return cargardata; } set { cargardata = value; OnPropertyChanged(); } }
+
+        private bool issincronizing;
+        public bool Issincronizando { get { return issincronizing; } set { issincronizing = value; OnPropertyChanged(); } }
 
         public bool SetProperty<T>(ref T backingStore, T value,[CallerMemberName]string propertyName="",Action onChanged=null)
         {
@@ -122,12 +126,18 @@ namespace CheckstoresMagnusRetail.ViewModels
  
         public async Task recargarDatos()
         {
-            OperacionActiva = "Iniciando Sincronizacion";
+            if (!Issincronizando)
+                return;
+            var api =await SecureStorage.GetAsync("rutaapi");
+            OperacionActiva = "Iniciando Sincronizacion a "+api;
+
             SincronizacionData = true;
+            Issincronizando = false;
             IsBusy = true;
             LOGtEXT.Clear();
             ListaHabilitada = false;
             Logginvisible = true;
+            await Task.Delay(20);
 
             try
             {
@@ -192,6 +202,7 @@ namespace CheckstoresMagnusRetail.ViewModels
             ListaHabilitada = true;
 
             SincronizacionData = false;
+            Issincronizando = true;
             IsBusy = false;
             await CargarDatos();
 

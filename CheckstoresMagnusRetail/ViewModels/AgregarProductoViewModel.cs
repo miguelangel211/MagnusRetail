@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using CheckstoresMagnusRetail.DataModels;
@@ -21,6 +22,8 @@ namespace CheckstoresMagnusRetail.ViewModels
 
         private Command visualizarproductodata;
         public Command VisualizarProductoDatos { get { return visualizarproductodata; } set { visualizarproductodata = value;OnPropertyChanged(); } }
+
+        public Command EditarProducto { get; set; }
         public Producto datosforma;
 
         public Producto DatosForma { get { return datosforma; } set { datosforma = value;OnPropertyChanged(); } }
@@ -28,6 +31,7 @@ namespace CheckstoresMagnusRetail.ViewModels
         ServicioProductoNivelOperaciones prodnivrepo;
         public bool upcencontrado;
         public bool nuevoregistro;
+        public bool NuevoRegistro { get { return nuevoregistro; } set { nuevoregistro = value;OnPropertyChanged(); } }
         public bool UPCencontrado { get { return upcencontrado; } set { upcencontrado = value;OnPropertyChanged(); } }
         ServicioMuebleProductoNivel datosniveltramo;
         ServicioMueblesOperaciones mueblerepo;
@@ -50,6 +54,21 @@ namespace CheckstoresMagnusRetail.ViewModels
         public ObservableCollection<Categoria> Categorias { get { return categorias; } set { categorias = value; OnPropertyChanged(); } }
 
         private double maximaaltura;
+
+
+        private bool Productopreexistente;
+        public bool EditandoProductoPrexistente { get { return Productopreexistente; } set { Productopreexistente = value;OnPropertyChanged(); } }
+
+        private bool camposeditables;
+        public bool Camposeditables { get { return camposeditables; } set { camposeditables = value; OnPropertyChanged(); } }
+
+        public string textbuttoned;
+        public string TextoBotonEditar { get { return textbuttoned; } set {
+                textbuttoned = value;
+                OnPropertyChanged("TextoBotonEditar"); } }
+
+        public bool  botoneditarvisible;
+            public bool BotonEditarVisible { get {return botoneditarvisible; } set { BotonEditarVisible = value;OnPropertyChanged(); } }
         public AgregarProductoViewModel(ServicioMuebleProductoNivel datos,bool editando,Categoria parametercategoria)
         {
             Modoforma = editando;
@@ -60,13 +79,39 @@ namespace CheckstoresMagnusRetail.ViewModels
             Niveles = new ObservableCollection<ServicioMuebleProductoNivel>();
             op = new ProductoOperacion();
             DatosForma = new Producto();
+
             nuevoregistro = false;
             BuscarProducto = new Command<string>(async(string m)=> await buscarproduct(m));
             VisualizarProductoDatos = new Command(async () => await visualizacionproductoseccion());
+            EditarProducto = new Command(async()=>await Editarproductodata());
            Alturalistaniveles = 200;
             AlturaProductocontrol = 60;
            maximaaltura= DeviceDisplay.MainDisplayInfo.Height;
             SeccionProductoVisibilidad = true;
+            camposeditables = true;
+            EditandoProductoPrexistente = false;
+            camposeditables = false;
+            NuevoRegistro = true;
+            TextoBotonEditar = "Editar";
+        }
+
+        private async Task Editarproductodata() {
+            if (Camposeditables)
+            {
+                 Camposeditables = false;
+          
+                TextoBotonEditar = "Cancelar";
+
+            }
+            else
+            {
+                await buscarproduct(DatosForma.UPC);
+                TextoBotonEditar = "Editar";
+
+
+            }
+           
+          //  EditandoProductoPrexistente = !EditandoProductoPrexistente;
         }
 
 
@@ -96,10 +141,15 @@ namespace CheckstoresMagnusRetail.ViewModels
             if (prod.realizado)
             {
                 DatosForma = prod.Result;
-                nuevoregistro= false;
+                EditandoProductoPrexistente = true;
+                Camposeditables = true;
+                NuevoRegistro = false;
+                TextoBotonEditar = "Editar";
             }
             else {
-                nuevoregistro = true;
+                NuevoRegistro = true;
+                Camposeditables = false;
+                  EditandoProductoPrexistente = false;
                 if (DatosForma.ProductoLocalID.HasValue) {
                     DatosForma = new Producto { UPC = h };
                 }
@@ -155,11 +205,18 @@ namespace CheckstoresMagnusRetail.ViewModels
                         return false;
                     
                     await op.insertarregistro(DatosForma);
+
                     await op.guardarimagenesdelproducto(DatosForma);
                 }
-           
+                if (EditandoProductoPrexistente && !Camposeditables) {
+                    DatosForma.Sincronizado = false;
+                    DatosForma.FechaHoraLocal = DateTime.Now;
 
-                    foreach (var nivel in Niveles)
+                    await op.ActualizarDatos(DatosForma);
+
+                }
+
+                foreach (var nivel in Niveles)
                     {
                     
                     nivel.ProductoID = DatosForma.ProductoID;

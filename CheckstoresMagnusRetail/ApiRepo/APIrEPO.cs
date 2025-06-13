@@ -21,23 +21,33 @@ namespace CheckstoresMagnusRetail.ApiRepo
         string urlerror ="";
         HttpResponseMessage response = null;
         int usuarioID;
-
+        string urlalternative;
         public ApiRequest()
         {
             client = new HttpClient();
             //   this.url = "https://checkstoresmagnusapi.azurewebsites.net/";
             // this.url = "http://bimagnus.eastus.cloudapp.azure.com/magnusretail/";
-            this.url = " http://powerbinew.eastus.cloudapp.azure.com/magnusapi/";
             //  urlerror = "http://bimagnus.eastus.cloudapp.azure.com/magnuslog/api/dataerror/";
             urlerror = "http://powerbinew.eastus.cloudapp.azure.com/magnuslogging/";
-           // urlerror = "http://datserver.ddns.net:8089/Log4net/api/dataerror/";
+            // urlerror = "http://datserver.ddns.net:8089/Log4net/api/dataerror/";
+            urlalternative = "http://powerbinew.eastus.cloudapp.azure.com/copiacheckstoresapi/";
+            var urlactual = Task.Run(async()=> url= await SecureStorage.GetAsync("rutaapi")
+
+                );
+            Task.WaitAll(urlactual);
+
+            if (url==""||url==null)
+                this.url = " http://powerbinew.eastus.cloudapp.azure.com/magnusapi/";
+
+            
             getuser();
         }
         public async Task getuser()
         {
             var datos = await SecureStorage.GetAsync("User");
             var usuari = JsonConvert.DeserializeObject<Usuario>(datos);
-            usuarioID = usuari.UsuarioID;
+            if(usuari!=null)
+                usuarioID = usuari.UsuarioID;
         }
 
         public async Task<genericresult> Pruebadeconexion()
@@ -45,16 +55,52 @@ namespace CheckstoresMagnusRetail.ApiRepo
             string Errores = null;
             try
             {
-                builder = new UriBuilder(string.Concat(url));
-                builder.Port = -1;
+                builder = new UriBuilder(string.Concat(url,"API/Programas/Descarga?UsuarioID=0"));
+                //builder.Port = -1;
                 string urlbuild = builder.ToString();
                 response = await client.GetAsync(urlbuild);
                 if (response.IsSuccessStatusCode)
                 {
-                    return await Task.FromResult(new genericresult { realizado = true });
+                    return await Task.FromResult(new genericresult { realizado = true,Errores="Conexion Realizada !!!!!" });
                 }
                 else {
                     return await Task.FromResult(new genericresult { realizado = false,Errores="No se pudo establecer una conexion" });
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                var r = new resultfromAPIUsuario() { Usuarios = null };
+                r.realizado = false;
+                if (!string.IsNullOrEmpty(Errores))
+                {
+                    r.Errores = Errores;
+                }
+                else
+                {
+                    r.Errores = "No se pudo establecer una conexion";
+                }
+                return await Task.FromResult(r);
+            }
+        }
+
+        public async Task<genericresult> Pruebadeconexion2(string uuurlapi)
+        {
+            string Errores = null;
+            try
+            {
+                builder = new UriBuilder(string.Concat(uuurlapi, "API/Programas/Descarga?UsuarioID=0"));
+                //builder.Port = -1;
+                string urlbuild = builder.ToString();
+                response = await client.GetAsync(urlbuild);
+                if (response.IsSuccessStatusCode)
+                {
+                    return await Task.FromResult(new genericresult { realizado = true, Errores = "Conexion Realizada !!!!!" });
+                }
+                else
+                {
+                    return await Task.FromResult(new genericresult { realizado = false, Errores = "No se pudo establecer una conexion" });
 
                 }
 
@@ -83,7 +129,7 @@ namespace CheckstoresMagnusRetail.ApiRepo
             try
             {
                 builder = new UriBuilder(string.Concat(url,"API/account/login"));
-                builder.Port = -1;
+               // builder.Port = -1;
 
                 var query = HttpUtility.ParseQueryString(builder.Query);
                 query["UserName"] = usuario;
@@ -139,7 +185,7 @@ namespace CheckstoresMagnusRetail.ApiRepo
             try
             {
                 builder = new UriBuilder(string.Concat(url, "API/Usuarios/Descarga?UsuarioID="+usuarioID));
-                builder.Port = -1;
+               // builder.Port = -1;
 
                 string urlbuild = builder.ToString();
                 response = await client.GetAsync(urlbuild);
@@ -184,7 +230,7 @@ namespace CheckstoresMagnusRetail.ApiRepo
                string usuariodata =await SecureStorage.GetAsync("User");
                 var usuario = JsonConvert.DeserializeObject<Usuario>(usuariodata);
                 builder = new UriBuilder(string.Concat(url, "API/Productos/Descarga?UsuarioID="+usuario.UsuarioID));
-                builder.Port = -1;
+               // builder.Port = -1;
                 string urlbuild = builder.ToString();
                 response = await client.GetAsync(urlbuild);
                 string r = await response.Content.ReadAsStringAsync();
@@ -235,7 +281,7 @@ namespace CheckstoresMagnusRetail.ApiRepo
             try
             {
                 builder = new UriBuilder(string.Concat(url, "API/Programas/Descarga?UsuarioID=" + usuarioID));
-                builder.Port = -1;
+                //builder.Port = -1;
                 string urlbuild = builder.ToString();
                 response = await client.GetAsync(urlbuild);
                 string r = await response.Content.ReadAsStringAsync();
@@ -279,7 +325,7 @@ namespace CheckstoresMagnusRetail.ApiRepo
             try
             {
                 builder = new UriBuilder(string.Concat(url, "API/ServicioEstatus/Descarga?UsuarioID=" + usuarioID));
-                builder.Port = -1;
+               // builder.Port = -1;
                 string urlbuild = builder.ToString();
                 response = await client.GetAsync(urlbuild);
                 string r = await response.Content.ReadAsStringAsync();
@@ -326,7 +372,7 @@ namespace CheckstoresMagnusRetail.ApiRepo
             try
             {
                 builder = new UriBuilder(string.Concat(url, "API/MuebleTipo/Descarga?UsuarioID=" + usuarioID));
-                builder.Port = -1;
+                //builder.Port = -1;
                 string urlbuild = builder.ToString();
                 response = await client.GetAsync(urlbuild);
                 string r = await response.Content.ReadAsStringAsync();
@@ -373,7 +419,7 @@ namespace CheckstoresMagnusRetail.ApiRepo
             try
             {
                 builder = new UriBuilder(string.Concat(url, "API/Mueble/Descarga?UsuarioID=" + usuarioID));
-                builder.Port = -1;
+                //builder.Port = -1;
                 string urlbuild = builder.ToString();
                 response = await client.GetAsync(urlbuild);
                 string r = await response.Content.ReadAsStringAsync();
@@ -423,7 +469,7 @@ namespace CheckstoresMagnusRetail.ApiRepo
             try
             {
                 builder = new UriBuilder(string.Concat(url, "API/MuebleImagen/Descarga?UsuarioID=" + usuarioID));
-                builder.Port = -1;
+                //builder.Port = -1;
                 string urlbuild = builder.ToString();
                 response = await client.GetAsync(urlbuild);
                 string r = await response.Content.ReadAsStringAsync();
@@ -488,7 +534,7 @@ namespace CheckstoresMagnusRetail.ApiRepo
             try
             {
                 builder = new UriBuilder(string.Concat(url, "API/LayoutImagen/Descarga?UsuarioID=" + usuarioID));
-                builder.Port = -1;
+                //builder.Port = -1;
                 string urlbuild = builder.ToString();
                 response = await client.GetAsync(urlbuild);
                 string r = await response.Content.ReadAsStringAsync();
@@ -551,7 +597,7 @@ namespace CheckstoresMagnusRetail.ApiRepo
                 string usuariodata =await SecureStorage.GetAsync("User");
                 var usuario = JsonConvert.DeserializeObject<Usuario>(usuariodata);
                 builder = new UriBuilder(string.Concat(url, "API/Productos/DescargaFotos?idSiguiente="+prodid+ "&UsuarioID="+usuario.UsuarioID));
-                builder.Port = -1;
+               // builder.Port = -1;
                 string urlbuild = builder.ToString();
                 response = await client.GetAsync(urlbuild);
                 string r = await response.Content.ReadAsStringAsync();
@@ -599,7 +645,7 @@ namespace CheckstoresMagnusRetail.ApiRepo
             try
             {
                 builder = new UriBuilder(string.Concat(url, "API/Categoria/Descarga?UsuarioID=" + usuarioID));
-                builder.Port = -1;
+                //builder.Port = -1;
                 string urlbuild = builder.ToString();
                 response = await client.GetAsync(urlbuild);
                 string r = await response.Content.ReadAsStringAsync();
@@ -645,7 +691,7 @@ namespace CheckstoresMagnusRetail.ApiRepo
             try
             {
                 builder = new UriBuilder(string.Concat(url, "API/Tramos/Descarga?UsuarioID=" + usuarioID));
-                builder.Port = -1;
+                //builder.Port = -1;
                 string urlbuild = builder.ToString();
                 response = await client.GetAsync(urlbuild);
                 string r = await response.Content.ReadAsStringAsync();
@@ -697,7 +743,7 @@ namespace CheckstoresMagnusRetail.ApiRepo
             try
             {
                 builder = new UriBuilder(string.Concat(url, "API/TramosNivel/Descarga?UsuarioID=" + usuarioID));
-                builder.Port = -1;
+                //builder.Port = -1;
                 string urlbuild = builder.ToString();
                 response = await client.GetAsync(urlbuild);
                 string r = await response.Content.ReadAsStringAsync();
@@ -746,7 +792,7 @@ namespace CheckstoresMagnusRetail.ApiRepo
             try
             {
                 builder = new UriBuilder(string.Concat(url, "API/ServicioUsuarios/Descarga?UsuarioID=" + usuarioID));
-                builder.Port = -1;
+               // builder.Port = -1;
                 string urlbuild = builder.ToString();
                 response = await client.GetAsync(urlbuild);
                 string r = await response.Content.ReadAsStringAsync();
@@ -794,7 +840,7 @@ namespace CheckstoresMagnusRetail.ApiRepo
             try
             {
                 builder = new UriBuilder(string.Concat(url, "API/MuebleTramoNivelCategoria/Descarga?UsuarioID=" + usuarioID));
-                builder.Port = -1;
+               // builder.Port = -1;
                 string urlbuild = builder.ToString();
                 response = await client.GetAsync(urlbuild);
                 string r = await response.Content.ReadAsStringAsync();
@@ -845,7 +891,7 @@ namespace CheckstoresMagnusRetail.ApiRepo
             try
             {
                 builder = new UriBuilder(string.Concat(url, "API/ProductoNivel/Descarga?UsuarioID=" + usuarioID));
-                builder.Port = -1;
+                //builder.Port = -1;
                 string urlbuild = builder.ToString();
                 response = await client.GetAsync(urlbuild);
                 string r = await response.Content.ReadAsStringAsync();
@@ -1265,6 +1311,59 @@ namespace CheckstoresMagnusRetail.ApiRepo
                 string json = JsonConvert.SerializeObject(dato);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 response = await client.PostAsync(string.Concat(url, "api/Productos/CargaFotos"), content);
+                string r = await response.Content.ReadAsStringAsync();
+                respuesta = r;
+                var respuestageneric = JsonConvert.DeserializeObject<genericresult>(r);
+                Errores = respuestageneric.Errores;
+                if (respuestageneric.realizado)
+                {
+                    var reso = JsonConvert.DeserializeObject<resultfromAPIFotoscargaProducto>(r);
+
+                    return await Task.FromResult(reso);
+                }
+                else
+                {
+                    return await Task.FromResult(new resultfromAPIFotoscargaProducto
+                    {
+                        realizado = respuestageneric.realizado,
+                        LayoutFotosSync = new List<ProductoImagen>(),
+                        Errores = respuestageneric.Errores
+                    });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                var r = new resultfromAPIFotoscargaProducto() { LayoutFotosSync = null };
+                r.realizado = false;
+                Debug.WriteLine(ex.Message);
+                if (!string.IsNullOrEmpty(Errores))
+                {
+                    r.Errores = Errores;
+                }
+                else
+                {
+                    r.Errores = ex.Message// + " : " + ex.StackTrace
+                        ;
+                }
+                return await Task.FromResult(r);
+            }
+        }
+
+
+        public async Task<resultfromAPIFotoscargaProducto> CargaProductoImagenPOSTalternative(ProductoImagen parameter)
+        {
+            string Errores = null;
+            string respuesta = "";
+            try
+            {
+
+                var dato = new List<ProductoImagen>();
+                dato.Add(parameter);
+                HttpResponseMessage response = null;
+                string json = JsonConvert.SerializeObject(dato);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                response = await client.PostAsync(string.Concat(urlalternative, "api/Productos/CargaFotos"), content);
                 string r = await response.Content.ReadAsStringAsync();
                 respuesta = r;
                 var respuestageneric = JsonConvert.DeserializeObject<genericresult>(r);

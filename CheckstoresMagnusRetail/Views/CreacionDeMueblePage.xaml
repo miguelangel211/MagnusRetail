@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:viewmodels="clr-namespace:CheckstoresMagnusRetail.ViewModels" xmlns:viewcells="clr-namespace:CheckstoresMagnusRetail.Views.ViewCells" xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms" xmlns:conv="clr-namespace:CheckstoresMagnusRetail.Methods"
              x:Class="CheckstoresMagnusRetail.Views.CreacionDeMueblePage"
              x:Name="paginamueble"
+                           BackgroundColor="{StaticResource Gris}"
+
     >
 
     <ContentPage.ToolbarItems>

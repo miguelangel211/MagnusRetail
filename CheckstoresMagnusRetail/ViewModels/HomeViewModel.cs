@@ -24,7 +24,6 @@ namespace CheckstoresMagnusRetail.ViewModels
         private ObservableCollection<TiendaModel> tiendas;
         public ObservableCollection<TiendaModel> Tiendas { get { return tiendas; } set { tiendas = value;OnPropertyChanged(); } }
         private ServiciosOperaciones repo = new ServiciosOperaciones();
-    
 
 
         public HomeViewModel()

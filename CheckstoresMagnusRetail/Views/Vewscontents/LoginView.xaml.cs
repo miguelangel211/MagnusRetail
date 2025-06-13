@@ -40,7 +40,7 @@ namespace CheckstoresMagnusRetail.Views.Vewscontents
             }
             else
             {
-               (this.BindingContext as LoginModel).Errorusuario = true;
+                (this.BindingContext as LoginModel).Errorusuario = true;
                 (this.BindingContext as LoginModel).Errorpassword = true;
             }
 
@@ -48,7 +48,7 @@ namespace CheckstoresMagnusRetail.Views.Vewscontents
 
 
 
-     
+
         public async Task loginUsuario(string Usuario, string pass)
         {
 
@@ -108,6 +108,12 @@ namespace CheckstoresMagnusRetail.Views.Vewscontents
             usuario.Foto = null;
             var data = JsonConvert.SerializeObject(usuario);
             await SecureStorage.SetAsync("User", data);
+        }
+
+       async void abriropciones(System.Object sender, System.EventArgs e)
+        {
+            await Navigation.PushModalAsync(new Configuracionrutas());
+
         }
     }
 }

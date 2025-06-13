@@ -24,7 +24,9 @@
              <Style x:Key="SecondaryPage" TargetType="ContentPage">
             <Setter Property="BackgroundColor" Value="{StaticResource Gris}" />
              <Setter Property="NavigationPage.BarBackgroundColor"  Value="{StaticResource Key=azul}"/>
-                              <Setter Property="NavigationPage.HasNavigationBar" Value="False" />
+        <Setter Property="NavigationPage.BarTextColor"  Value="{StaticResource Key=blanco}"/>
+
+        <Setter Property="NavigationPage.HasNavigationBar" Value="False" />
 
         </Style>
          <Style x:Key="inputtext" TargetType="material:MaterialTextField">

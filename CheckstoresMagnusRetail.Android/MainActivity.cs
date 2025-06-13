@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.IO;
 using Newtonsoft.Json;
 using CheckstoresMagnusRetail.DataModels;
+using Android;
 //using Rb.Forms.Barcode.Droid;
 
 namespace CheckstoresMagnusRetail.Droid
@@ -38,7 +39,7 @@ namespace CheckstoresMagnusRetail.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             XF.Material.Droid.Material.Init(this, savedInstanceState);
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
-
+            CheckAppPermissions();
             /*  var config = new Configuration
               {
                   Zoom = 5
@@ -56,6 +57,17 @@ namespace CheckstoresMagnusRetail.Droid
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
+        private void CheckAppPermissions()
+        {
+        
+                if (PackageManager.CheckPermission(Manifest.Permission.ReadExternalStorage, PackageName) != Permission.Granted
+                    && PackageManager.CheckPermission(Manifest.Permission.WriteExternalStorage, PackageName) != Permission.Granted)
+                {
+                    var permissions = new string[] { Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage };
+                    RequestPermissions(permissions, 1);
+                }
+            
+        }
 
         private static void TaskSchedulerOnUnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs unobservedTaskExceptionEventArgs)
         {

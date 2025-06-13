@@ -8,13 +8,13 @@
     <ViewCell.View>
 
         <StackLayout>
-              <ui:MaterialCard Padding="5,5,5,5"  >
+              <ui:MaterialCard Padding="5,5,5,5"  BackgroundColor="White">
                         <StackLayout>
                             <Label x:Name="nombretramo" TextColor="{StaticResource Key=azul}" FontSize="Small" FontAttributes="Bold"
                                    Text="{Binding TramoNumero ,Converter={StaticResource Key=converttramo}}"
                                 HorizontalOptions="CenterAndExpand" />
 
-                                      <syncfusion:SfListView 
+                                      <syncfusion:SfListView BackgroundColor="White"
                                           x:Name="listView"
                                           ItemsSource="{Binding Niveles}"
                                           AutoFitMode="DynamicHeight"

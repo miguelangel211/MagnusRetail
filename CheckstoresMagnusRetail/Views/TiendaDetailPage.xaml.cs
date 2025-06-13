@@ -23,6 +23,7 @@ namespace CheckstoresMagnusRetail.Views
             isbusy = false;
             apariciones = 0;
             this.Title = service.NombreTienda;
+            
             MessagingCenter.Subscribe<MuebleViewcell, MuebleModel>(this, "Hi", async (sender, arg) =>
             {
               await  context.EliminarMueble(arg);
