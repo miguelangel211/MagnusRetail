@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/CheckstoresMagnusRetail/.vs
+/CheckstoresMagnusRetail/.vs/CheckstoresMagnusRetail/CopilotIndices/17.14.670.39694/CodeChunks.db
